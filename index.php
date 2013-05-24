@@ -11,7 +11,7 @@ $(function(){
      $("body").html("its a mobile device! :D");
     }
     else{
-        $("body").html("boo such a old form factot! :(");
+        $("body").html("not ready for the silver screen yet.. check out the site from your mobile.");
     }
 })
 </script>
