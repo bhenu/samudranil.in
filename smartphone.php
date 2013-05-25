@@ -16,9 +16,7 @@ $sxml = simplexml_load_file($feedURL);
 <link rel="stylesheet" href="css/smartphone.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="scripts/swipe.js"></script>
-<script>
-window.mySwipe = Swipe(document.getElementById('slider'));
-</script>
+
 </head>
 <body>
   <div class="header">
@@ -53,4 +51,7 @@ window.mySwipe = Swipe(document.getElementById('slider'));
     <a>site credits</a>
   </div>
 </body>
+<script>
+window.mySwipe = Swipe(document.getElementById('slider'));
+</script>
 </html>
