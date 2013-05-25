@@ -1,3 +1,11 @@
+<?php
+$userid = '114527766546168509668';
+$albumid = '5632182463740846529';
+$feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid/albumid/$albumid?kind=photo&access=public&max-results=7";
+$sxml = simplexml_load_file($feedURL);
+
+?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -10,11 +18,26 @@
 </head>
 <body>
   <div class="header">
-    <div id="logo"></div>
+    <div id="logo"><img src="images/logo.jpeg" /></div>
     <div id="menu"></div>
   </div>
   <div class="content-area">
-    <div class="photo-slider"></div>
+    <div class="photo-slider">
+        <?php
+			foreach ($sxml->entry as $entry) {      
+        	$media = $entry->children('http://search.yahoo.com/mrss/');
+	        $thumbnail = $media->group->thumbnail[1];
+        	$imgurl = $thumbnail->attributes()->{'url'};
+        	$oldword = "s144";
+        	$newword = "s800";
+	        $imgurl = str_replace($oldword , $newword , $imgurl);
+
+        	echo "<div><img width='800' style='margin: 0 auto;' src=\"" . 
+        	$imgurl . "\"/></div>";
+            }
+
+		?>
+	</div>
     <div class="albums"></div>
     <div class="blog-posts"></div>
   </div>
