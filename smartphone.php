@@ -15,6 +15,7 @@ $sxml = simplexml_load_file($feedURL);
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/smartphone.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script src="scripts/swipe.js"></script>
 </head>
 <body>
   <div class="header">
@@ -23,20 +24,24 @@ $sxml = simplexml_load_file($feedURL);
   </div>
   <div class="content-area">
     <div class="photo-slider">
+     <div id='slider' class='swipe'>
+      <div class='swipe-wrap'>
         <?php
 			foreach ($sxml->entry as $entry) {      
         	$media = $entry->children('http://search.yahoo.com/mrss/');
 	        $thumbnail = $media->group->thumbnail[1];
         	$imgurl = $thumbnail->attributes()->{'url'};
         	$oldword = "s144";
-        	$newword = "s800";
+        	$newword = "s400";
 	        $imgurl = str_replace($oldword , $newword , $imgurl);
 
-        	echo "<div><img width='800' style='margin: 0 auto;' src=\"" . 
+        	echo "<div><img width='400' style='margin: 0 auto;' src=\"" . 
         	$imgurl . "\"/></div>";
             }
 
 		?>
+	  </div>
+	 </div>
 	</div>
     <div class="albums"></div>
     <div class="blog-posts"></div>
