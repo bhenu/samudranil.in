@@ -1,3 +1,7 @@
+body{
+  text-align: center;
+}
+
 div.header, div.content-area, div.footer  {
   width: 450px;
   margin: 0 auto;
@@ -7,6 +11,12 @@ div.photo-slider {
   width: 400px;
   margin: 0 auto;
 }
+
+#logo {
+  width: 266px;
+  margin: 0 auto;
+}
+
 .swipe {
   overflow: hidden;
   visibility: hidden;
