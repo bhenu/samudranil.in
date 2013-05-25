@@ -11,6 +11,7 @@ $sxml = simplexml_load_file($feedURL);
 <head>
 <title> Samudranil Roy -- Photography</title>
 <meta charset="UTF-8" />
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'/>
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/smartphone.css" />
@@ -52,6 +53,17 @@ $sxml = simplexml_load_file($feedURL);
   </div>
 </body>
 <script>
-window.mySwipe = Swipe(document.getElementById('slider'));
+
+window.mySwipe = Swipe(document.getElementById('slider'),{
+  startSlide: 2,
+  speed: 400,
+  auto: 3000,
+  continuous: true,
+  disableScroll: false,
+  stopPropagation: false,
+  callback: function(index, elem) {},
+  transitionEnd: function(index, elem) {}
+});
+
 </script>
 </html>
