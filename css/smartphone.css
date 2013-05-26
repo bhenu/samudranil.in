@@ -30,4 +30,5 @@ div.photo-slider {
   float:left;
   width:100%;
   position: relative;
+  border-radius: 4px 4px 4px 4px;
 }

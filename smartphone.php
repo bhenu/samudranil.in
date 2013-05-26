@@ -33,7 +33,7 @@
         	$newword = "s640";
 	        $imgurl = str_replace($oldword , $newword , $imgurl);
 
-        	echo "<div><img width='400' style='margin: 0 auto;' src=\"" . 
+        	echo "<div><img style='margin: 0 auto;' src=\"" . 
         	$imgurl . "\"/></div>";
         }
 
