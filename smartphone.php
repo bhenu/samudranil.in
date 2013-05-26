@@ -1,11 +1,3 @@
-<?php
-$userid = '114527766546168509668';
-$albumid = '5632182463740846529';
-$feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid/albumid/$albumid?kind=photo&access=public&max-results=7";
-$sxml = simplexml_load_file($feedURL);
-
-?>
-
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -29,7 +21,11 @@ $sxml = simplexml_load_file($feedURL);
      <div id='slider' class='swipe'>
       <div class='swipe-wrap'>
         <?php
-			foreach ($sxml->entry as $entry) {      
+        $userid = '114527766546168509668';
+        $albumid = '5632182463740846529';
+        $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid/albumid/$albumid?kind=photo&access=public&max-results=7";
+        $sxml = simplexml_load_file($feedURL);
+		foreach ($sxml->entry as $entry) {      
         	$media = $entry->children('http://search.yahoo.com/mrss/');
 	        $thumbnail = $media->group->thumbnail[1];
         	$imgurl = $thumbnail->attributes()->{'url'};
@@ -39,7 +35,7 @@ $sxml = simplexml_load_file($feedURL);
 
         	echo "<div><img width='400' style='margin: 0 auto;' src=\"" . 
         	$imgurl . "\"/></div>";
-            }
+        }
 
 		?>
 	  </div>
