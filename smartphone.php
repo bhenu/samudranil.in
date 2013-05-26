@@ -30,7 +30,7 @@
 	        $thumbnail = $media->group->thumbnail[1];
         	$imgurl = $thumbnail->attributes()->{'url'};
         	$oldword = "s144";
-        	$newword = "s400";
+        	$newword = "s640";
 	        $imgurl = str_replace($oldword , $newword , $imgurl);
 
         	echo "<div><img width='400' style='margin: 0 auto;' src=\"" . 
