@@ -3,7 +3,7 @@ body{
 }
 
 div.header, div.content-area, div.footer  {
-  width: 450px;
+  width: 100%;
   margin: 0 auto;
 }
 
