@@ -13,7 +13,7 @@
 </head>
 <body>
   <div class="header">
-    <div id="logo"><img src="images/logo_s.png" /></div>
+    <div id="logo"><img src="images/logo_m.png" /></div>
     <div id="menu"></div>
   </div>
   <div class="content-area">

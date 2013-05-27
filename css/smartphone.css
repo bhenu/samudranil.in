@@ -7,14 +7,32 @@ div.header, div.content-area, div.footer  {
   margin: 0 auto;
 }
 
+div.header{
+  height: 100px;  
+  background: #ffffff;
+}
 div.photo-slider {
   max-width: 100%;
   margin: 0 auto;
 }
 
 #logo {
-  width: 266px;
-  margin: 0 auto;
+  width: 300px;
+  float: left;
+  border-radius: 50%;
+  background: #002140;
+  margin-top: -50px;
+  margin-left: 2%;
+  height: 300px;
+}
+
+#menu {
+  float:rigth;
+  margin-top: 30px;
+  width: 50px;
+  height: 50px;
+  background: url('../images/menu.png');
+  margin-right: 3%;
 }
 
 .swipe {
