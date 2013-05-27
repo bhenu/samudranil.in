@@ -48,6 +48,11 @@ div.photo-slider {
   overflow: hidden;
   visibility: hidden;
   position: relative;
+  margin-top: 20px;
+}
+
+.swipe-wrap img{
+  width: 90%;
 }
 .swipe-wrap {
   overflow: hidden;
