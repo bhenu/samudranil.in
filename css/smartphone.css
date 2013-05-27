@@ -20,9 +20,9 @@ div.photo-slider {
 #logo {
   width: 100px;
   float: left;
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
-  border-radius: 50%;
+  -webkit-border-radius: 50px;
+  -moz-border-radius: 50px;
+  border-radius: 50px;
   background: #002140;
   margin-top: -20px;
   margin-left: 2%;
@@ -72,9 +72,9 @@ div.photo-slider {
 }
 .photo-slider nav #position li {
     background: none repeat scroll 0 0 #b3b3b3;
-    -webkit-border-radius: 50%;
-    -moz-border-radius: 50%;
-    border-radius: 50%;
+    -webkit-border-radius: 7px;
+    -moz-border-radius: 7px;
+    border-radius: 7px;
     box-shadow: 1px 1px 2px black inset, 0px 0px 0px 0px #000;
     cursor: pointer;
     display: inline-block;
