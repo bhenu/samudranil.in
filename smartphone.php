@@ -3,12 +3,33 @@
 <head>
 <title> Samudranil Roy -- Photography</title>
 <meta charset="UTF-8" />
+<meta nam='description' content='Samudranil Roy is a  hobby photographer. This website contains some of his works and also his blogs.'>
+<meta name='keywords' content='Samudranil Roy, Samudranil, Photography, Nature Photography, photos'>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/smartphone.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="scripts/swipe.js"></script>
+<script>
+$(function(){
+
+    var bullets = document.getElementById('position').getElementsByTagName('li');
+    var slider = Swipe(document.getElementById('slider'), {
+        auto: 3000,
+        continuous: true,
+        callback: function(pos) {
+                var i = bullets.length;
+                while (i--) {
+                bullets[i].className = ' ';
+                }
+                bullets[pos].className = 'on';
+        }
+    });
+
+})
+
+</script>
 
 </head>
 <body>
@@ -40,6 +61,19 @@
 		?>
 	  </div>
 	 </div>
+	 <nav>
+
+    <ul id='position'>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+
+    </nav>
 	</div>
     <div class="albums"></div>
     <div class="blog-posts"></div>
@@ -48,16 +82,5 @@
     <a>site credits</a>
   </div>
 </body>
-<script>
 
-window.mySwipe = Swipe(document.getElementById('slider'),{
-  startSlide: 2,
-  speed: 400,
-  auto: 3000,
-  continuous: true,
-  disableScroll: false,
-  stopPropagation: false
-});
-
-</script>
 </html>

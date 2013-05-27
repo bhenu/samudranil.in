@@ -62,5 +62,25 @@ div.photo-slider {
   float:left;
   width:100%;
   position: relative;
-  border-radius: 4px 4px 4px 4px;
+}
+
+.photo-slider nav #position {
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.photo-slider nav #position li {
+    background: none repeat scroll 0 0 none;
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px black inset, 0px 0px 0px 0px #000;
+    cursor: pointer;
+    display: inline-block;
+    height: 13px;
+    margin: 3%;
+    width: 13px;
+}
+.photo-slider nav #position li.on {
+    background-color: #002140;
+    box-shadow:  0px 0px 5px 0px #000;
 }
