@@ -44,6 +44,18 @@ div.photo-slider {
     margin-top: 24px;
     width: 43px;
 }
+
+.menu-list {
+    width: 100%;
+    background: #fff;
+    border-bottom:  ;
+}
+
+.menu-list > a{
+    font-size: 1.5em;
+    padding: 8px;
+    border-top: 1px dashed #b3b3b3;
+}
 .swipe {
   overflow: hidden;
   visibility: hidden;

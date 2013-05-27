@@ -26,6 +26,12 @@ $(function(){
                 bullets[pos].className = 'on';
         }
     });
+    
+    //menu slide
+    $('div.menu-list').hide();
+    $("#menu").click(function(){
+               $('div.menu-list').slideToggle(); 
+    });
 
 })
 
@@ -34,8 +40,13 @@ $(function(){
 </head>
 <body>
   <div class="header">
-    <div id="logo"><img src="images/logo_m.png" /></div>
+    <a href="index.php"><div id="logo"><img src="images/logo_m.png" /></div></a>
     <div id="menu"></div>
+  </div>
+  <div class="menu-list">
+        <a href="#about">about</a>
+        <a href="#blog">blog</a>
+        <a href="#albums">albums</a>
   </div>
   <div class="content-area">
     <div class="photo-slider">
