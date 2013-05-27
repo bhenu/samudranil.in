@@ -8,7 +8,7 @@ div.header, div.content-area, div.footer  {
 }
 
 div.header{
-  height: 100px;  
+  height: 85px;  
   background: #ffffff;
   overflow: hidden;
 }
