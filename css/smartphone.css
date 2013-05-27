@@ -10,6 +10,7 @@ div.header, div.content-area, div.footer  {
 div.header{
   height: 100px;  
   background: #ffffff;
+  overflow: hidden;
 }
 div.photo-slider {
   max-width: 100%;
@@ -17,24 +18,30 @@ div.photo-slider {
 }
 
 #logo {
-  width: 300px;
+  width: 100px;
   float: left;
   border-radius: 50%;
   background: #002140;
-  margin-top: -50px;
+  margin-top: -20px;
   margin-left: 2%;
-  height: 300px;
+  height: 100px;
 }
+
+#logo img {
+  margin-left: 5px;
+  margin-top: 22px;
+  width: 72%;
+}
+
 
 #menu {
-  float:rigth;
-  margin-top: 30px;
-  width: 50px;
-  height: 50px;
-  background: url('../images/menu.png');
-  margin-right: 3%;
+    background: url("../images/menu.png") repeat scroll 0 0 transparent;
+    float: right;
+    height: 39px;
+    margin-right: 3%;
+    margin-top: 24px;
+    width: 43px;
 }
-
 .swipe {
   overflow: hidden;
   visibility: hidden;

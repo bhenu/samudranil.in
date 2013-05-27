@@ -4,4 +4,6 @@ body, img {
 
 body {
     background: #f1eeee;
+    margin:0;
+    padding: 0;
 }
