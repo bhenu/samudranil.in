@@ -105,3 +105,26 @@ div.photo-slider {
     -webkit-box-shadow:  0px 0px 5px 0px #000;
     box-shadow:  0px 0px 5px 0px #000;
 }
+
+#albums {
+    width: 90%;
+    border-top: 2px groove white;
+    margin: 0 auto;
+}
+
+.album-elements {
+    background: white;
+    color: #B3B3B3;
+    float: left;
+    font-family: Ubuntu;
+    font-weight: bold;
+    margin: 3%;
+    overflow: hidden;
+    width: 44%;
+    padding-top: 2%;
+    padding-bottom: 15px;
+}
+
+.pics {
+    width: 90%;
+}
