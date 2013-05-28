@@ -63,6 +63,11 @@ $(function(){
      <div id='slider' class='swipe'>
       <div class='swipe-wrap'>
         <?php
+        
+        ##
+        ## retreive the featured images from picasa
+        ##
+        
         $userid = '114527766546168509668';
         $albumid = '5632182463740846529';
         $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid/albumid/$albumid?kind=photo&access=public&max-results=7";
@@ -100,7 +105,12 @@ $(function(){
     <h2> Albums</h2>
     <div id="album-swipe" class="swipe">
     <div class='swipe-wrap'>
-    <?php     
+    <?php
+    
+        ##  
+        ##this piece of php retrieves the list of albums from picasa
+        ##
+             
         $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid?kind=album&access=public";
         $sxml = simplexml_load_file($feedURL);
         $elem_counter = 0;
@@ -131,9 +141,32 @@ $(function(){
             }
             echo "</div>";
     ?>
+        </div>
+      </div>
     </div>
+    <div class="blog-posts">
+    <h2> Posts </h2>
+    <?php 
+    
+    ##
+    ## get the latest posts from tumblr
+    ##
+    $blog_url = "http://api.tumblr.com/v2/blog/ghoshbinayak.tumblr.com/posts?api_key=upraHHL2RL1JwKyg9LXX1TGyeJ8d0wZcFOus3xBf7x47pX1xyw";
+    $json = file_get_contents($blog_url);
+    $json_parsed = json_decode($json);
+    
+    foreach($json_parsed->response->posts as $post){
+        $post_title = $post->title;
+        $post_body = $post->body;
+        echo "<div class='blog-post'>";
+        echo "<h3>$post_title</h3>";
+        echo $post_body;
+        #echo "<div class='comments'>0</div><div class='time'>2050</div>";
+        echo "</div>";
+    }
+    
+    ?>
     </div>
-    <div class="blog-posts"></div>
   </div>
 </body>
 

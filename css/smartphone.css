@@ -112,10 +112,11 @@ div.photo-slider {
     box-shadow:  0px 0px 5px 0px #000;
 }
 
-.albums {
+.albums, .blog-posts {
     width: 90%;
     border-top: 2px dotted black;
     margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 .album-elements {
@@ -133,4 +134,44 @@ div.photo-slider {
 
 .pics {
     width: 90%;
+}
+
+.blog-post {
+    background: #D4D4D4;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    color: #373737;
+    font-family: Ubuntu;
+    font-weigth: normel;
+    line-height: 26px;
+    margin: 20px 0 0;
+    padding: 2%;
+    padding-top: 0px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 1.2em;    
+}
+
+.blog-post a {
+    display: inline;
+    text-decoration: underline;
+    color: inherit;
+}
+
+.blog-post a:hover {
+    color: #000;
+}
+
+.blog-post h3 {
+    font-size: 2em;
+    text-align: left;
+    font-family: "Proxima N W01 Bold","Calibri Bold",AvenirNext-Bold,"Avenir Next Bold",Helvetica,Arial,sans-serif;
+    text-shadow: 0 1px 0 white;
+}
+    
+.blog-post img {
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
