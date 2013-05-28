@@ -124,7 +124,7 @@ $(function(){
 	        
 	
 
-	        echo "<div class='albumtitle'>" . $title . "</div></div>";
+	        echo "<p class='albumtitle'>" . $title . "</p></div>";
             $elem_counter += 1;
             }
             echo "</div>";
