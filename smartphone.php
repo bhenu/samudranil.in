@@ -27,7 +27,16 @@ $(function(){
         }
     });
 
-    
+    window.albumSlide = new Swipe(document.getElementById('albums'), {
+                          startSlide: 2,
+                          speed: 400,
+                          auto: 3000,
+                          continuous: true,
+                          disableScroll: false,
+                          stopPropagation: true
+                          });
+
+
     //menu slide
     $('div.menu-list').hide();
     $("#menu").click(function(){
@@ -87,8 +96,8 @@ $(function(){
 
     </nav>
 	</div>
-    <div id="albums">
-    <h2>Albums</h2>
+    <div id="albums" class="swipe">
+    <div class='swipe-wrap'>
     <?php     
         $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid?kind=album&access=public";
         $sxml = simplexml_load_file($feedURL);
@@ -115,6 +124,7 @@ $(function(){
 	        echo "<div class='albumtitle'>" . $title . "</div></div>";
             }
     ?>
+    </div>
     </div>
     <div class="blog-posts"></div>
   </div>
