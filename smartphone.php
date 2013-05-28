@@ -27,7 +27,7 @@ $(function(){
         }
     });
 
-    window.albumSlide = new Swipe(document.getElementById('albums'), {
+    window.albumSlide = new Swipe(document.getElementById('album-swipe'), {
                           startSlide: 2,
                           speed: 400,
                           auto: 3000,
@@ -96,7 +96,9 @@ $(function(){
 
     </nav>
 	</div>
-    <div id="albums" class="swipe">
+    <div class="albums">
+    <h2> Albums</h2>
+    <div id="album-swipe" class="swipe">
     <div class='swipe-wrap'>
     <?php     
         $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid?kind=album&access=public";
