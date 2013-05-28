@@ -101,7 +101,8 @@ $(function(){
     <?php     
         $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid?kind=album&access=public";
         $sxml = simplexml_load_file($feedURL);
-        
+        $elem_counter = 0;
+        echo "<div>";
         foreach ($sxml->entry as $entry) {
 	        $id = $entry->id;
 	        $oldword = "http://picasaweb.google.com/data/entry/base/user/114527766546168509668/albumid/";
@@ -111,18 +112,22 @@ $(function(){
 	        $newword = "";
 	        $id = str_replace($oldword , $newword , $id);
 	        $title = $entry->title;
-	
+            if($elem_counter != 0 && $elem_counter%2 == 0){
+                echo "</div><div>";
+            }	
 	        echo "<div class='album-elements'>";
 	        $media = $entry->children('http://search.yahoo.com/mrss/');
 		    $thumbnail = $media->group->thumbnail;
 		    $imgurl = $thumbnail->attributes()->{'url'};
-		    echo "<div><img alt='$title' class='pics' src=\"" . 
-	        $imgurl . "\"/></div>";
+		    echo "<img alt='$title' class='pics' src=\"" . 
+	        $imgurl . "\"/>";
 	        
 	
 
 	        echo "<div class='albumtitle'>" . $title . "</div></div>";
+            $elem_counter += 1;
             }
+            echo "</div>";
     ?>
     </div>
     </div>
