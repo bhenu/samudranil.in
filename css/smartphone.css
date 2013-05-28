@@ -3,9 +3,10 @@ body{
 }
 
 h2{
-  font-family: Ubuntu;
-  font-weight: bold;
-  font-size: 1.5em;
+  font-family: Ubuntu Light;
+  font-weight: lighter;
+  font-size: 2.5em;
+  color: #b3b3b3;
 }
 
 div.header, div.content-area, div.footer  {
@@ -15,7 +16,7 @@ div.header, div.content-area, div.footer  {
 
 div.header{
   height: 85px;  
-  background: #ffffff;
+  background: #E1E1E1;
   overflow: hidden;
 }
 div.photo-slider {
@@ -29,7 +30,7 @@ div.photo-slider {
   -webkit-border-radius: 50px;
   -moz-border-radius: 50px;
   border-radius: 50px;
-  background: #002140;
+  background: #000;
   margin-top: -20px;
   margin-left: 2%;
   height: 100px;
@@ -56,7 +57,7 @@ div.photo-slider {
 
 .menu-list {
     width: 100%;
-    background: #fff;
+    background: #E1E1E1;
     border-bottom:  ;
 }
 
@@ -105,7 +106,7 @@ div.photo-slider {
     width: 13px;
 }
 .photo-slider nav #position li.on {
-    background-color: #002140;
+    background-color: #000;
     -moz-box-shadow:  0px 0px 5px 0px #000;
     -webkit-box-shadow:  0px 0px 5px 0px #000;
     box-shadow:  0px 0px 5px 0px #000;
@@ -113,12 +114,12 @@ div.photo-slider {
 
 .albums {
     width: 90%;
-    border-top: 2px groove white;
+    border-top: 2px dotted black;
     margin: 0 auto;
 }
 
 .album-elements {
-    background: white;
+    background: black;
     color: #B3B3B3;
     float: left;
     font-family: Ubuntu;

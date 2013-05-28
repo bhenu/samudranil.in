@@ -3,7 +3,7 @@ body, img {
 }
 
 body {
-    background: #f1eeee;
+    background: #1a1a1a;
     margin:0;
     padding: 0;
 }
@@ -13,9 +13,9 @@ a {
     display: block;
     margin: 0;
     padding: 0;
-    color: #b3b3b3;
+    color: #535353;
 }
 
 a:active, a:hover {
-    color: #002140;
+    color: #000;
 }
