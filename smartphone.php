@@ -35,7 +35,15 @@ $(function(){
                           disableScroll: false,
                           stopPropagation: true
                           });
-
+                          
+    window.recentSlide = new Swipe(document.getElementById('recent-swipe'), {
+                          startSlide: 2,
+                          speed: 400,
+                          auto: 3000,
+                          continuous: true,
+                          disableScroll: false,
+                          stopPropagation: true
+                          });
 
     //menu slide
     $('div.menu-list').hide();
@@ -101,72 +109,103 @@ $(function(){
 
     </nav>
 	</div>
-    <div class="albums">
-    <h2> Albums</h2>
-    <div id="album-swipe" class="swipe">
-    <div class='swipe-wrap'>
-    <?php
-    
-        ##  
-        ##this piece of php retrieves the list of albums from picasa
-        ##
-             
-        $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid?kind=album&access=public";
-        $sxml = simplexml_load_file($feedURL);
-        $elem_counter = 0;
-        echo "<div>";
-        foreach ($sxml->entry as $entry) {
-	        $id = $entry->id;
-	        $oldword = "http://picasaweb.google.com/data/entry/base/user/114527766546168509668/albumid/";
-	        $newword = "";
-	        $id = str_replace($oldword , $newword , $id);
-	        $oldword = "?hl=en_US";
-	        $newword = "";
-	        $id = str_replace($oldword , $newword , $id);
-	        $title = $entry->title;
-            if($elem_counter != 0 && $elem_counter%2 == 0){
-                echo "</div><div>";
-            }	
-	        echo "<div class='album-elements'>";
-	        $media = $entry->children('http://search.yahoo.com/mrss/');
-		    $thumbnail = $media->group->thumbnail;
-		    $imgurl = $thumbnail->attributes()->{'url'};
-		    echo "<img alt='$title' class='pics' src=\"" . 
-	        $imgurl . "\"/>";
+	
+	
+	<div class="recent">
+	<h2>Recent Clix</h2>
+	    <div id="recent-swipe" class="swipe">
+	        <div class='swipe-wrap'>
+	        <?php 
+	            ##
+	            ## get the recently uploaded pics from picasa
+	            ##
+	            
+	            $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid?kind=photo&access=public&max-results=12&imgmax=244c";
+	            $sxml = simplexml_load_file($feedURL);
+	            $elem_counter = 0;
+	            echo "<div>";
+	            foreach ($sxml->entry as $entry){
+	                	$content = $entry->content;	                    	                    
+        	            $imgurl = $content->attributes()->{'src'};
+	                    if($elem_counter!= 0 && $elem_counter%4 == 0){
+	                        echo "</div><div>";
+	                        }
+	                    echo "<div class='recent-element'><img class='pic' alt='$title' src='$imgurl'/></div>";
+	                    $elem_counter += 1;
+	                    }
+	            echo "</div>";
 	        
+	        ?>
+	        </div>
+	    </div>
+	</div>
+	
+    <div class="albums">
+        <h2> Albums</h2>
+        <div id="album-swipe" class="swipe">
+        <div class='swipe-wrap'>
+        <?php
+        
+            ##  
+            ##this piece of php retrieves the list of albums from picasa
+            ##
+                 
+            $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid?kind=album&access=public";
+            $sxml = simplexml_load_file($feedURL);
+            $elem_counter = 0;
+            echo "<div>";
+            foreach ($sxml->entry as $entry) {
+	            $id = $entry->id;
+	            $oldword = "http://picasaweb.google.com/data/entry/base/user/114527766546168509668/albumid/";
+	            $newword = "";
+	            $id = str_replace($oldword , $newword , $id);
+	            $oldword = "?hl=en_US";
+	            $newword = "";
+	            $id = str_replace($oldword , $newword , $id);
+	            $title = $entry->title;
+                if($elem_counter != 0 && $elem_counter%2 == 0){
+                    echo "</div><div>";
+                }	
+	            echo "<div class='album-elements'>";
+	            $media = $entry->children('http://search.yahoo.com/mrss/');
+		        $thumbnail = $media->group->thumbnail;
+		        $imgurl = $thumbnail->attributes()->{'url'};
+		        echo "<img alt='$title' class='pics' src=\"" . 
+	            $imgurl . "\"/>";
+	            
 	
 
-	        echo "<p class='albumtitle'>" . $title . "</p></div>";
-            $elem_counter += 1;
-            }
-            echo "</div>";
-    ?>
+	            echo "<p class='albumtitle'>" . $title . "</p></div>";
+                $elem_counter += 1;
+                }
+                echo "</div>";
+        ?>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
-    <div class="blog-posts">
-    <h2> Posts </h2>
-    <?php 
-    
-    ##
-    ## get the latest posts from tumblr
-    ##
-    $blog_url = "http://api.tumblr.com/v2/blog/ghoshbinayak.tumblr.com/posts?api_key=upraHHL2RL1JwKyg9LXX1TGyeJ8d0wZcFOus3xBf7x47pX1xyw";
-    $json = file_get_contents($blog_url);
-    $json_parsed = json_decode($json);
-    
-    foreach($json_parsed->response->posts as $post){
-        $post_title = $post->title;
-        $post_body = $post->body;
-        echo "<div class='blog-post'>";
-        echo "<h3>$post_title</h3>";
-        echo $post_body;
-        #echo "<div class='comments'>0</div><div class='time'>2050</div>";
-        echo "</div>";
-    }
-    
-    ?>
-    </div>
+        <div class="blog-posts">
+        <h2> Posts </h2>
+        <?php 
+        
+        ##
+        ## get the latest posts from tumblr
+        ##
+        $blog_url = "http://api.tumblr.com/v2/blog/ghoshbinayak.tumblr.com/posts?api_key=upraHHL2RL1JwKyg9LXX1TGyeJ8d0wZcFOus3xBf7x47pX1xyw";
+        $json = file_get_contents($blog_url);
+        $json_parsed = json_decode($json);
+        
+        foreach($json_parsed->response->posts as $post){
+            $post_title = $post->title;
+            $post_body = $post->body;
+            echo "<div class='blog-post'>";
+            echo "<h3>$post_title</h3>";
+            echo $post_body;
+            #echo "<div class='comments'>0</div><div class='time'>2050</div>";
+            echo "</div>";
+        }
+        
+        ?>
+        </div>
   </div>
 </body>
 

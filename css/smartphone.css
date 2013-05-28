@@ -112,13 +112,19 @@ div.photo-slider {
     box-shadow:  0px 0px 5px 0px #000;
 }
 
-.albums, .blog-posts {
+.albums, .blog-posts, .recent {
     width: 90%;
     border-top: 2px dotted black;
     margin: 0 auto;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    margin-top: 20px;
 }
 
+.recent-element {
+    width: 46%;
+    margin: 2%;
+    
+}
 .album-elements {
     background: black;
     color: #B3B3B3;
