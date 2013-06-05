@@ -12,7 +12,7 @@ include_once 'handle_picasa.php';
 <pre>
 	<?php
 		//print_r($picasa->getAlbumPhotos("5632182463740846529", "300c", "1", "1"));
-		print_r($picasa->getPhoto("5770697284499307138", "1600"));
+		print_r($picasa->getPhoto("5763182500453685954", "1600"));
 	?>
 </pre>
 

@@ -179,7 +179,7 @@ class Picasa{
 								'model' => $exiftag->model,
 								'exposure' => $exiftag->exposure,
 								'flash' => $exiftag->flash,
-								'focullength' => $exiftag->focullength,
+								'focallength' => $exiftag->focallength,
 								'iso' => $exiftag->iso,
 							);
 					$Photos[] = array(
@@ -207,6 +207,16 @@ class Picasa{
 							->group->content->attributes()->{'url'};
 				$albumid = $sxml->children('http://schemas.google.com/photos/2007')
 								->albumid;
+				$exiftag = $sxml->children('http://schemas.google.com/photos/exif/2007')->tags;
+				$exif = array(
+							'fstop' => $exiftag->fstop,
+							'make' => $exiftag->make,
+							'model' => $exiftag->model,
+							'exposure' => $exiftag->exposure,
+							'flash' => $exiftag->flash,
+							'focallength' => $exiftag->focallength,
+							'iso' => $exiftag->iso,
+							);
 				$feedURL = "https://picasaweb.google.com/data/feed/api/user/"
 							.$this->userid
 							."/albumid/"
@@ -214,14 +224,14 @@ class Picasa{
 							."?kind=photo&access=public&thumbnial=32";
 				$sxml = simplexml_load_file($feedURL);
 				foreach($sxml->entry as $entry){
-					if($entry->children('http://schemas.google.com/photos/2007')->id === $photoid){
+					if($entry->children('http://schemas.google.com/photos/2007')->id == $photoid){
 						$prev = array(
 									'id' => $temp_id,
 									'title' => $temp_title,
 									'url' => $temp_url,
 									);
 					}
-					if($temp_id === $photoid){
+					if($temp_id == $photoid){
 						$temp_id = $entry->children('http://schemas.google.com/photos/2007')
 								->id;
 						$temp_title = $entry->summary;
@@ -237,6 +247,7 @@ class Picasa{
 								->id;
 					$temp_title = $entry->summary;
 					$temp_url = $entry->content->attributes()->{'src'};
+					echo "" . $temp_id . " | ". $photoid . "<br/>";
 				}
 				
 				return $Photo = array(
@@ -245,10 +256,11 @@ class Picasa{
 									'url' => $url,
 									'filename' => $filename,
 									'albumid' => $albumid,
+									'exif' => $exif,
 									'prev' => $prev,
 									'next' => $next,);
 			}
 		}
 		
-$picasa = new Picasa();
+$Picasa = new Picasa();
 ?>
