@@ -3,7 +3,7 @@
 <head>
 <title> Samudranil Roy -- Photography</title>
 <meta charset="UTF-8" />
-<meta nam='description' content='Samudranil Roy is a  hobby photographer. This website contains some of his works and also his blogs.'>
+<meta name='description' content='Samudranil Roy is a  hobby photographer. This website contains some of his works and also his blogs.'>
 <meta name='keywords' content='Samudranil Roy, Samudranil, Photography, Nature Photography, photos'>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <link rel="shortcut icon" href="images/favicon.ico" />
