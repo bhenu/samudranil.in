@@ -1,5 +1,5 @@
 <?php
-
+require_once 'scripts/simple_html_dom.php';
 class Tumblr{
 	private $userid = "ghoshbinayak.tumblr.com";
 	private $apikey = "upraHHL2RL1JwKyg9LXX1TGyeJ8d0wZcFOus3xBf7x47pX1xyw";
@@ -22,7 +22,9 @@ class Tumblr{
 			$posturl = $entry->post_url;
 			$timestamp = $entry -> timestamp;
 			$posttitle = $entry -> title;
-			$postbody = $entry->body;			
+			$postbody = $entry->body;
+			$html = str_get_html($postbody);
+			var_dump($html);
 		}
 	}
 

@@ -190,7 +190,7 @@ $(function(){
         ##
         ## get the latest posts from tumblr
         ##
-        $blog_url = "http://api.tumblr.com/v2/blog/ghoshbinayak.tumblr.com/posts?api_key=upraHHL2RL1JwKyg9LXX1TGyeJ8d0wZcFOus3xBf7x47pX1xyw";
+        $blog_url = "http://api.tumblr.com/v2/blog/ghoshbinayak.tumblr.com/posts/text?api_key=upraHHL2RL1JwKyg9LXX1TGyeJ8d0wZcFOus3xBf7x47pX1xyw";
         $json = file_get_contents($blog_url);
         $json_parsed = json_decode($json);
         
