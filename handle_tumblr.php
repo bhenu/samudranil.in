@@ -22,6 +22,15 @@ class Tumblr{
 			$timestamp = $entry -> timestamp;
 			$posttitle = $entry -> title;
 			$postbody = $entry->body;
+		//get img tags in post body by regular exp match
+			preg_match_all ("|<img(.+)/>|", $postbody, $imgtags);
+		//simarly extract the url of the first image
+			preg_match_all ("|src=\"(.+)\"|", $imgtags[0][0], $imgsrc);
+			print_r($imgsrc);
+		//replace image size
+			//preg_match_all ("|/s\d+/|", "/s200/", $imgsrc[1][0]);
+			//print_r($imgsrc); 
+
 		}
 	}
 
