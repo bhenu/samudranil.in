@@ -1,18 +1,30 @@
-<?php 
-include_once 'handle_tumblr.php';
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+		<script>
+			$(function(){
+				var SROY = {
+					'url' :'ajax.php',
+					'sendRequest' : function(){
+						$.getJSON(this.url, this.sendData, function(data){
+							$("#container").html("<pre>"+ data.url + "</pre>");
+							})
+						},
+					'sendData' : {
+						'type' : 'photo',
+						'photoid' : '5890319400538265762'
+						}					
+					};
+				
+				SROY.sendRequest();
+				
+				});
+		</script>
+	</head>
+	<body>
+		<p id='container'>content goes here..</p>
+	</body>
 
-//$albums = $picasa->getAlbums("600c");
 
-//foreach ($albums as $element){
-	//echo "<h1>". $element['title'] . "</h1><br />";
-	//echo "id: ". $element['id'] . "<br />";
-	//echo "thumbnail: <img src=\"". $element['thumbnail'] . "\" /><br />";
-//};
-?>
-<pre>
-	<?php
-		//print_r($picasa->getAlbumPhotos("5632182463740846529", "300c", "1", "1"));
-		$Tumblr->getPostsShort("0", "5");
-	?>
-</pre>
-
+</html>
