@@ -1,3 +1,7 @@
+<?php
+require_once "handle_picasa.php";
+require_once "handle_tumblr.php";
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -10,50 +14,49 @@
 <link rel="stylesheet" href="css/main.css" />
 <link rel="stylesheet" href="css/smartphone.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="scripts/swipe.js"></script>
-<script>
-$(function(){
 
-    var bullets = document.getElementById('position').getElementsByTagName('li');
-    var slider = Swipe(document.getElementById('slider'), {
-        auto: 3000,
-        continuous: true,
-        callback: function(pos) {
-                var i = bullets.length;
-                while (i--) {
-                bullets[i].className = ' ';
-                }
-                bullets[pos].className = 'on';
-        }
-    });
+<?php if (!isset($_GET['page'])): ?>
+    <script src="scripts/swipe.js"></script>
+    <script>
+    $(function(){
 
-    window.albumSlide = new Swipe(document.getElementById('album-swipe'), {
-                          startSlide: 2,
-                          speed: 400,
-                          auto: 3000,
-                          continuous: true,
-                          disableScroll: false,
-                          stopPropagation: true
-                          });
-                          
-    window.recentSlide = new Swipe(document.getElementById('recent-swipe'), {
-                          startSlide: 2,
-                          speed: 400,
-                          auto: 3000,
-                          continuous: true,
-                          disableScroll: false,
-                          stopPropagation: true
-                          });
+        var bullets = document.getElementById('position').getElementsByTagName('li');
+        var slider = Swipe(document.getElementById('slider'), {
+            auto: 3000,
+            continuous: true,
+            callback: function(pos) {
+                    var i = bullets.length;
+                    while (i--) {
+                    bullets[i].className = ' ';
+                    }
+                    bullets[pos].className = 'on';
+            }
+        });
 
-    //menu slide
-    $('div.menu-list').hide();
-    $("#menu").click(function(){
-               $('div.menu-list').slideToggle(); 
-    });
+        window.albumSlide = new Swipe(document.getElementById('album-swipe'), {
+                              startSlide: 2,
+                              speed: 400,
+                              auto: 3000,
+                              continuous: true,
+                              disableScroll: false,
+                              stopPropagation: true
+                              });
 
-})
+        window.recentSlide = new Swipe(document.getElementById('recent-swipe'), {
+                              startSlide: 2,
+                              speed: 400,
+                              auto: 3000,
+                              continuous: true,
+                              disableScroll: false,
+                              stopPropagation: true
+                              });
 
-</script>
+
+
+    })
+
+    </script>
+<?php endif; ?>
 
 </head>
 <body>
@@ -62,40 +65,28 @@ $(function(){
     <div id="menu"></div>
   </div>
   <div class="menu-list">
-        <a href="#about">about</a>
-        <a href="#blog">blog</a>
-        <a href="#albums">albums</a>
+        <a href="about/">about</a>
+        <a href="blog/">blog</a>
+        <a href="albums/">albums</a>
   </div>
   <div class="content-area">
+    <?php if(!isset($_GET['page'])): ?>
     <div class="photo-slider">
      <div id='slider' class='swipe'>
       <div class='swipe-wrap'>
         <?php
-        
         ##
         ## retreive the featured images from picasa
         ##
-        
-        $userid = '114527766546168509668';
-        $albumid = '5632182463740846529';
-        $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid/albumid/$albumid?kind=photo&access=public&max-results=7";
-        $sxml = simplexml_load_file($feedURL);
-		foreach ($sxml->entry as $entry) {      
-        	$media = $entry->children('http://search.yahoo.com/mrss/');
-	        $thumbnail = $media->group->thumbnail[1];
-        	$imgurl = $thumbnail->attributes()->{'url'};
-        	$oldword = "s144";
-        	$newword = "s640";
-	        $imgurl = str_replace($oldword , $newword , $imgurl);
-
-        	echo "<div><img style='margin: 0 auto;' src=\"" . 
-        	$imgurl . "\"/></div>";
-        }
-
-		?>
-	  </div>
-	 </div>
-	 <nav>
+        $photos = array_slice($Picasa->getAlbumPhotos('5632182463740846529', '640', '1', '7'), 2);
+        foreach ($photos as $entry) {
+            echo "<div><img style='margin: 0 auto;' src=\"" .
+            $entry['url'] . "\"/></div>";
+            }
+        ?>
+      </div>
+     </div>
+     <nav>
 
     <ul id='position'>
       <li></li>
@@ -108,74 +99,56 @@ $(function(){
     </ul>
 
     </nav>
-	</div>
-	
-	
-	<div class="recent">
-	<h2>Recent Clix</h2>
-	    <div id="recent-swipe" class="swipe">
-	        <div class='swipe-wrap'>
-	        <?php 
-	            ##
-	            ## get the recently uploaded pics from picasa
-	            ##
-	            
-	            $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid?kind=photo&access=public&max-results=12&imgmax=244c";
-	            $sxml = simplexml_load_file($feedURL);
-	            $elem_counter = 0;
-	            echo "<div>";
-	            foreach ($sxml->entry as $entry){
-	                	$content = $entry->content;	                    	                    
-        	            $imgurl = $content->attributes()->{'src'};
-	                    if($elem_counter!= 0 && $elem_counter%4 == 0){
-	                        echo "</div><div>";
-	                        }
-	                    echo "<div class='recent-element'><img class='pic' alt='$title' src='$imgurl'/></div>";
-	                    $elem_counter += 1;
-	                    }
-	            echo "</div>";
-	        
-	        ?>
-	        </div>
-	    </div>
-	</div>
-	
+    </div>
+
+
+    <div class="recent">
+    <h2>Recent Clix</h2>
+        <div id="recent-swipe" class="swipe">
+            <div class='swipe-wrap'>
+            <?php
+                ##
+                ## get the recently uploaded pics from picasa
+                ##
+                $photos = $Picasa->getRecentPhotos('244c', '12');
+                $elem_counter = 0;
+                echo "<div>";
+                foreach ($photos as $entry){
+                        if($elem_counter!= 0 && $elem_counter%4 == 0){
+                            echo "</div><div>";
+                            }
+                        echo "<div class='recent-element'><img class='pic' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div>";
+                        $elem_counter += 1;
+                        }
+                echo "</div>";
+
+            ?>
+            </div>
+        </div>
+    </div>
+
     <div class="albums">
         <h2> Albums</h2>
         <div id="album-swipe" class="swipe">
         <div class='swipe-wrap'>
         <?php
-        
-            ##  
+            ##
             ##this piece of php retrieves the list of albums from picasa
             ##
-                 
-            $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid?kind=album&access=public";
-            $sxml = simplexml_load_file($feedURL);
+            $albums = $Picasa->getAlbums('244');
             $elem_counter = 0;
             echo "<div>";
-            foreach ($sxml->entry as $entry) {
-	            $id = $entry->id;
-	            $oldword = "http://picasaweb.google.com/data/entry/base/user/114527766546168509668/albumid/";
-	            $newword = "";
-	            $id = str_replace($oldword , $newword , $id);
-	            $oldword = "?hl=en_US";
-	            $newword = "";
-	            $id = str_replace($oldword , $newword , $id);
-	            $title = $entry->title;
+            foreach ($albums as $entry) {
                 if($elem_counter != 0 && $elem_counter%2 == 0){
                     echo "</div><div>";
-                }	
-	            echo "<div class='album-elements'>";
-	            $media = $entry->children('http://search.yahoo.com/mrss/');
-		        $thumbnail = $media->group->thumbnail;
-		        $imgurl = $thumbnail->attributes()->{'url'};
-		        echo "<img alt='$title' class='pics' src=\"" . 
-	            $imgurl . "\"/>";
-	            
-	
+                }
+                echo "<div class='album-elements'>";
+                echo "<img alt='" . $entry['title'] . "' class='pics' src=\"" .
+                $entry['url'] . "\"/>";
 
-	            echo "<p class='albumtitle'>" . $title . "</p></div>";
+
+
+                echo "<p class='albumtitle'>" . $entry['title'] . "</p></div>";
                 $elem_counter += 1;
                 }
                 echo "</div>";
@@ -183,29 +156,55 @@ $(function(){
             </div>
           </div>
         </div>
-        <div class="blog-posts">
+    <div class="blog-posts">
         <h2> Posts </h2>
-        <?php 
-        
+        <?php
+
         ##
         ## get the latest posts from tumblr
         ##
         $blog_url = "http://api.tumblr.com/v2/blog/ghoshbinayak.tumblr.com/posts/text?api_key=upraHHL2RL1JwKyg9LXX1TGyeJ8d0wZcFOus3xBf7x47pX1xyw";
         $json = file_get_contents($blog_url);
         $json_parsed = json_decode($json);
-        
+
         foreach($json_parsed->response->posts as $post){
             $post_title = $post->title;
             $post_body = $post->body;
             echo "<div class='blog-post'>";
             echo "<h3>$post_title</h3>";
             echo $post_body;
-            #echo "<div class='comments'>0</div><div class='time'>2050</div>";
             echo "</div>";
         }
-        
+
+        ?>
+    </div>
+    <?php elseif(isset($_GET['page']) && $_GET['page'] == 'albums') : ?>
+        <div class="albums">
+        <h2> Albums</h2>
+        <?php
+            ##
+            ##this piece of php retrieves the list of albums from picasa
+            ##
+            $albums = $Picasa->getAlbums('320c');
+            $elem_counter = 0;
+            echo "<div>";
+            foreach ($albums as $entry) {
+                if($elem_counter != 0 && $elem_counter%2 == 0){
+                    echo "</div><div>";
+                }
+                echo "<div class='album-elements'>";
+                echo "<img alt='" . $entry['title'] . "' class='pics' src=\"" .
+                $entry['url'] . "\"/>";
+
+
+
+                echo "<p class='albumtitle'>" . $entry['title'] . "</p></div>";
+                $elem_counter += 1;
+                }
+                echo "</div>";
         ?>
         </div>
+    <?php endif; ?>
   </div>
 </body>
 
