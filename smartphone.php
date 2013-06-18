@@ -205,12 +205,14 @@ require_once "handle_tumblr.php";
         ?>
         </div>
     <?php elseif(isset($_GET['page']) && isset($_GET['id']) && $_GET['page'] == 'albums'): ?>
-        <div class="photos">
+        <div class="photos only">
             <?php
             ##
             ## get the photos in an album from picasa
             ##
-            $photos = array_slice($Picasa->getAlbumPhotos($_GET['id'], '244c', '1', '1000'), 2);
+            $photos = $Picasa->getAlbumPhotos($_GET['id'], '244c', '1', '1000');
+            echo "<h2>" . $photos['albumtitle'] . "</h2>";
+            $photos = array_slice($photos, 2);
             $elem_counter = 0;
             echo "<div class='element-wrapper'>";
             foreach ($photos as $entry){
