@@ -137,7 +137,9 @@ div.photo-slider {
     padding-top: 2%;
     padding-bottom: 15px;
 }
-
+.album-elements-wrapper{
+    overflow: hidden;
+}
 .pics {
     width: 90%;
 }

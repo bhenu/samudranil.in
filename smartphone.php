@@ -187,10 +187,10 @@ require_once "handle_tumblr.php";
             ##
             $albums = $Picasa->getAlbums('320c');
             $elem_counter = 0;
-            echo "<div>";
+            echo "<div class=\"album-elements-wrapper\">";
             foreach ($albums as $entry) {
                 if($elem_counter != 0 && $elem_counter%2 == 0){
-                    echo "</div><div>";
+                    echo "</div><div class=\"album-elements-wrapper\">";
                 }
                 echo "<div class='album-elements'>";
                 echo "<img alt='" . $entry['title'] . "' class='pics' src=\"" .
