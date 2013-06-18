@@ -1,4 +1,8 @@
 <?php
 require_once "handle_picasa.php";
-print_r($Picasa.getAlbumPhotos('5632182463740846529', '640', '1', '7');
+echo "<pre>";
+$photos = $Picasa->getAlbums('244');
+print_r($photos);
+echo "</pre>";
+phpinfo()
 ?>
