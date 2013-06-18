@@ -15,7 +15,7 @@ div.header, div.content-area, div.footer  {
 }
 
 div.header{
-  height: 85px;  
+  height: 85px;
   background: #E1E1E1;
   overflow: hidden;
 }
@@ -34,9 +34,9 @@ div.photo-slider {
   margin-top: -20px;
   margin-left: 2%;
   height: 100px;
-  -moz-box-shadow: 1px 1px 5px 2px; 
-  -webkit-box-shadow: 1px 1px 5px 2px; 
-  box-shadow: 1px 1px 5px 2px;  
+  -moz-box-shadow: 1px 1px 5px 2px;
+  -webkit-box-shadow: 1px 1px 5px 2px;
+  box-shadow: 1px 1px 5px 2px;
 }
 
 #logo img {
@@ -123,7 +123,7 @@ div.photo-slider {
 .recent-element {
     width: 46%;
     margin: 2%;
-    
+
 }
 .album-elements {
     background: black;
@@ -156,7 +156,7 @@ div.photo-slider {
     padding-top: 0px;
     text-align: left;
     overflow: hidden;
-    font-size: 1.2em;    
+    font-size: 1.2em;
 }
 
 .blog-post a {
@@ -175,9 +175,13 @@ div.photo-slider {
     font-family: "Proxima N W01 Bold","Calibri Bold",AvenirNext-Bold,"Avenir Next Bold",Helvetica,Arial,sans-serif;
     text-shadow: 0 1px 0 white;
 }
-    
+
 .blog-post img {
     clear: both;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.only{
+    border-top: 0;
 }

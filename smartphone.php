@@ -11,12 +11,12 @@ require_once "handle_tumblr.php";
 <meta name='keywords' content='Samudranil Roy, Samudranil, Photography, Nature Photography, photos'>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <link rel="shortcut icon" href="images/favicon.ico" />
-<link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/smartphone.css" />
+<link rel="stylesheet" href="../css/main.css" />
+<link rel="stylesheet" href="../css/smartphone.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 <?php if (!isset($_GET['page'])): ?>
-    <script src="scripts/swipe.js"></script>
+    <script src="../scripts/swipe.js"></script>
     <script>
     $(function(){
 
@@ -61,13 +61,13 @@ require_once "handle_tumblr.php";
 </head>
 <body>
   <div class="header">
-    <a href="index.php"><div id="logo"><img src="images/logo_m.png" /></div></a>
+    <a href="index.php"><div id="logo"><img src="../images/logo_m.png" /></div></a>
     <div id="menu"></div>
   </div>
   <div class="menu-list">
-        <a href="about/">about</a>
-        <a href="blog/">blog</a>
-        <a href="albums/">albums</a>
+        <a href="../about/">about</a>
+        <a href="../blog/">blog</a>
+        <a href="../albums/">albums</a>
   </div>
   <div class="content-area">
     <?php if(!isset($_GET['page'])): ?>
@@ -179,7 +179,7 @@ require_once "handle_tumblr.php";
         ?>
     </div>
     <?php elseif(isset($_GET['page']) && $_GET['page'] == 'albums') : ?>
-        <div class="albums">
+        <div class="albums only">
         <h2> Albums</h2>
         <?php
             ##
