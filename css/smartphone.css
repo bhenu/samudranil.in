@@ -112,7 +112,7 @@ div.photo-slider {
     box-shadow:  0px 0px 5px 0px #000;
 }
 
-.albums, .blog-posts, .recent {
+.albums, .blog-posts, .recent, .photos {
     width: 90%;
     border-top: 2px dotted black;
     margin: 0 auto;
@@ -120,9 +120,10 @@ div.photo-slider {
     margin-top: 20px;
 }
 
-.recent-element {
+.recent-element, .photo-element {
     width: 46%;
     margin: 2%;
+    float: left;
 
 }
 .album-elements {
@@ -137,7 +138,7 @@ div.photo-slider {
     padding-top: 2%;
     padding-bottom: 15px;
 }
-.album-elements-wrapper{
+.elements-wrapper{
     overflow: hidden;
 }
 .pics {

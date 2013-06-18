@@ -61,7 +61,7 @@ require_once "handle_tumblr.php";
 </head>
 <body>
   <div class="header">
-    <a href="index.php"><div id="logo"><img src="../images/logo_m.png" /></div></a>
+    <a href="../index.php"><div id="logo"><img src="../images/logo_m.png" /></div></a>
     <div id="menu"></div>
   </div>
   <div class="menu-list">
@@ -117,7 +117,7 @@ require_once "handle_tumblr.php";
                         if($elem_counter!= 0 && $elem_counter%4 == 0){
                             echo "</div><div>";
                             }
-                        echo "<div class='recent-element'><img class='pic' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div>";
+                        echo "<div class='recent-element'><img class='pics' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div>";
                         $elem_counter += 1;
                         }
                 echo "</div>";
@@ -178,7 +178,7 @@ require_once "handle_tumblr.php";
 
         ?>
     </div>
-    <?php elseif(isset($_GET['page']) && $_GET['page'] == 'albums') : ?>
+    <?php elseif(isset($_GET['page']) && $_GET['page'] == 'albums' && !isset($_GET['id'])) : ?>
         <div class="albums only">
         <h2> Albums</h2>
         <?php
@@ -187,10 +187,10 @@ require_once "handle_tumblr.php";
             ##
             $albums = $Picasa->getAlbums('320c');
             $elem_counter = 0;
-            echo "<div class=\"album-elements-wrapper\">";
+            echo "<div class=\"elements-wrapper\">";
             foreach ($albums as $entry) {
                 if($elem_counter != 0 && $elem_counter%2 == 0){
-                    echo "</div><div class=\"album-elements-wrapper\">";
+                    echo "</div><div class=\"elements-wrapper\">";
                 }
                 echo "<div class='album-elements'>";
                 echo "<img alt='" . $entry['title'] . "' class='pics' src=\"" .
@@ -203,6 +203,26 @@ require_once "handle_tumblr.php";
                 }
                 echo "</div>";
         ?>
+        </div>
+    <?php elseif(isset($_GET['page']) && isset($_GET['id']) && $_GET['page'] == 'albums'): ?>
+        <div class="photos">
+            <?php
+            ##
+            ## get the photos in an album from picasa
+            ##
+            $photos = array_slice($Picasa->getAlbumPhotos($_GET['id'], '244c', '1', '1000'), 2);
+            $elem_counter = 0;
+            echo "<div class='element-wrapper'>";
+            foreach ($photos as $entry){
+                    if($elem_counter!= 0 && $elem_counter%2 == 0){
+                        echo "</div><div class='element-wrapper'>";
+                        }
+                    echo "<div class='photo-element'><img class='pics' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div>";
+                    $elem_counter += 1;
+                    }
+            echo "</div>";
+            ?>
+
         </div>
     <?php endif; ?>
   </div>

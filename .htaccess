@@ -2,5 +2,8 @@ ErrorDocument 404 /404.php
 
 RewriteEngine on
 
-RewriteCond %{REQUEST_URI} albums/
-RewriteRule albums/ /?page=albums [PT]
+RewriteCond %{REQUEST_URI} albums/([0-9]+)
+RewriteRule albums/([0-9]+) /?page=albums&id=$1 [PT]
+
+RewriteCond %{REQUEST_URI} albums
+RewriteRule albums /?page=albums [PT]
