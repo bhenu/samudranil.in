@@ -2,11 +2,14 @@ body{
   text-align: center;
 }
 
-h2{
-  font-family: Ubuntu Light;
+h2, h3{
   font-weight: lighter;
   font-size: 2.5em;
   color: #b3b3b3;
+}
+
+h3 {
+    font-size: 1.5em;
 }
 
 div.header, div.content-area, div.footer  {
@@ -130,7 +133,6 @@ div.photo-slider {
     background: black;
     color: #B3B3B3;
     float: left;
-    font-family: Ubuntu;
     font-weight: bold;
     margin: 3%;
     overflow: hidden;
@@ -151,7 +153,6 @@ div.photo-slider {
     -moz-border-radius: 4px;
     border-radius: 4px;
     color: #373737;
-    font-family: Ubuntu;
     font-weigth: normel;
     line-height: 26px;
     margin: 20px 0 0;
@@ -175,7 +176,6 @@ div.photo-slider {
 .blog-post h3 {
     font-size: 2em;
     text-align: left;
-    font-family: "Proxima N W01 Bold","Calibri Bold",AvenirNext-Bold,"Avenir Next Bold",Helvetica,Arial,sans-serif;
     text-shadow: 0 1px 0 white;
 }
 

@@ -13,6 +13,7 @@ require_once "handle_tumblr.php";
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" href="../css/main.css" />
 <link rel="stylesheet" href="../css/smartphone.css" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 <?php if (!isset($_GET['page'])): ?>
@@ -235,8 +236,9 @@ require_once "handle_tumblr.php";
     <div class='photo-container'>
         <?php
             $photo = $Picasa->getPhoto($_GET['id'], '640');
-            echo "<h2><span style=\"font-size: 0.7em\">{" . $photo['albumtitle'] . "}</span>  " . $photo['title'] . "</h2>";
+            echo "<a href='../albums/".$photo['albumid']."'><h3>← albums / " . $photo['albumtitle'] . "</h3></a>";
             echo "<img class=\"pics\" src=\"" . $photo['url'] . "\"/>";
+            echo "<h2>".$photo['title']."</h2>";
         ?>
     </div>
     <?php endif; ?>
