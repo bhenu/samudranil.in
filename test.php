@@ -1,7 +1,7 @@
 <?php
 require_once "handle_picasa.php";
 echo "<pre>";
-$photos = $Picasa->getAlbumPhotos('5628911678017020657', '244', '1', '1000');
+$photos = $Picasa->getPhoto('5888327605693791650', '640');
 print_r($photos);
 echo "</pre>";
 ?>

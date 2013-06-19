@@ -122,6 +122,7 @@ class Picasa{
                             .$albumid
                             ."?kind=photo&access=public&thumbnial=32";
                 $sxml = simplexml_load_file($feedURL);
+                $albumtitle = (string)$sxml->title;
                 foreach($sxml->entry as $entry){
                     if($entry->children('http://schemas.google.com/photos/2007')->id == $photoid){
                         $prev = array(
@@ -154,6 +155,7 @@ class Picasa{
                                     'url' => $url,
                                     'filename' => $filename,
                                     'albumid' => $albumid,
+                                    'albumtitle' => $albumtitle,
                                     'exif' => $exif,
                                     'prev' => $prev,
                                     'next' => $next,);

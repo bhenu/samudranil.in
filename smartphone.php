@@ -57,7 +57,16 @@ require_once "handle_tumblr.php";
 
     </script>
 <?php endif; ?>
+<script>
+    $(function(){
+        //menu slide
+        $('div.menu-list').hide();
+        $("#menu").click(function(){
+                   $('div.menu-list').slideToggle();
+        });
+    });
 
+ </script>
 </head>
 <body>
   <div class="header">
@@ -117,7 +126,7 @@ require_once "handle_tumblr.php";
                         if($elem_counter!= 0 && $elem_counter%4 == 0){
                             echo "</div><div>";
                             }
-                        echo "<div class='recent-element'><img class='pics' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div>";
+                        echo "<a href='../photo/".$entry['photoid']."'><div class='recent-element'><img class='pics' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div></a>";
                         $elem_counter += 1;
                         }
                 echo "</div>";
@@ -135,20 +144,16 @@ require_once "handle_tumblr.php";
             ##
             ##this piece of php retrieves the list of albums from picasa
             ##
-            $albums = $Picasa->getAlbums('244');
+            $albums = $Picasa->getAlbums('244c');
             $elem_counter = 0;
             echo "<div>";
             foreach ($albums as $entry) {
                 if($elem_counter != 0 && $elem_counter%2 == 0){
                     echo "</div><div>";
                 }
-                echo "<div class='album-elements'>";
-                echo "<img alt='" . $entry['title'] . "' class='pics' src=\"" .
-                $entry['url'] . "\"/>";
-
-
-
-                echo "<p class='albumtitle'>" . $entry['title'] . "</p></div>";
+                echo "<a href=\"../albums/".$entry['albumid']."\"><div class='album-elements'>";
+                echo "<img alt='" . $entry['title'] . "' class='pics' src=\"" . $entry['url'] . "\"/>";
+                echo "<p class='albumtitle'>" . $entry['title'] . "</p></div></a>";
                 $elem_counter += 1;
                 }
                 echo "</div>";
@@ -192,13 +197,13 @@ require_once "handle_tumblr.php";
                 if($elem_counter != 0 && $elem_counter%2 == 0){
                     echo "</div><div class=\"elements-wrapper\">";
                 }
-                echo "<div class='album-elements'>";
+                echo "<a href='../albums/".$entry['albumid']."'><div class='album-elements'>";
                 echo "<img alt='" . $entry['title'] . "' class='pics' src=\"" .
                 $entry['url'] . "\"/>";
 
 
 
-                echo "<p class='albumtitle'>" . $entry['title'] . "</p></div>";
+                echo "<p class='albumtitle'>" . $entry['title'] . "</p></div></a>";
                 $elem_counter += 1;
                 }
                 echo "</div>";
@@ -219,13 +224,21 @@ require_once "handle_tumblr.php";
                     if($elem_counter!= 0 && $elem_counter%2 == 0){
                         echo "</div><div class='element-wrapper'>";
                         }
-                    echo "<div class='photo-element'><img class='pics' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div>";
+                    echo "<div class='photo-element'><a href='../photo/".$entry['photoid']."'><img class='pics' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div></a>";
                     $elem_counter += 1;
                     }
             echo "</div>";
             ?>
 
         </div>
+    <?php elseif(isset($_GET['page']) && $_GET['page'] == 'photo' && isset($_GET['id'])): ?>
+    <div class='photo-container'>
+        <?php
+            $photo = $Picasa->getPhoto($_GET['id'], '640');
+            echo "<h2><span style=\"font-size: 0.7em\">{" . $photo['albumtitle'] . "}</span>  " . $photo['title'] . "</h2>";
+            echo "<img class=\"pics\" src=\"" . $photo['url'] . "\"/>";
+        ?>
+    </div>
     <?php endif; ?>
   </div>
 </body>
