@@ -75,9 +75,10 @@ require_once "handle_tumblr.php";
     <div id="menu"></div>
   </div>
   <div class="menu-list">
-        <a href="../about/">about</a>
-        <a href="../blog/">blog</a>
+        <a href="../">home</a>
         <a href="../albums/">albums</a>
+        <a href="../blog/">blog</a>
+        <a href="../about/">about</a>
   </div>
   <div class="content-area">
     <?php if(!isset($_GET['page'])): ?>
@@ -239,6 +240,8 @@ require_once "handle_tumblr.php";
             echo "<a href='../albums/".$photo['albumid']."'><h3>← albums / " . $photo['albumtitle'] . "</h3></a>";
             echo "<img class=\"pics\" src=\"" . $photo['url'] . "\"/>";
             echo "<h2>".$photo['title']."</h2>";
+            echo "<a href='../photo/".$photo['prev']['id']."'><h3 style='float: left; margin-left: 5%'>← previous</h3></a>";
+            echo "<a href='../photo/".$photo['next']['id']."'><h3 style='float: right; margin-right: 5%'>next →</h3></a>";
         ?>
     </div>
     <?php endif; ?>
