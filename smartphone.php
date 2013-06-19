@@ -218,6 +218,7 @@ require_once "handle_tumblr.php";
             ## get the photos in an album from picasa
             ##
             $photos = $Picasa->getAlbumPhotos($_GET['id'], '244c', '1', '1000');
+            echo "<a href='../albums/'><h3>← all aubums</h3></a>";
             echo "<h2>" . $photos['albumtitle'] . "</h2>";
             $photos = array_slice($photos, 2);
             $elem_counter = 0;
