@@ -240,8 +240,12 @@ require_once "handle_tumblr.php";
             echo "<a href='../albums/".$photo['albumid']."'><h3>← albums / " . $photo['albumtitle'] . "</h3></a>";
             echo "<img class=\"pics\" src=\"" . $photo['url'] . "\"/>";
             echo "<h2>".$photo['title']."</h2>";
-            echo "<a href='../photo/".$photo['prev']['id']."'><h3 style='float: left; margin-left: 5%'>← previous</h3></a>";
-            echo "<a href='../photo/".$photo['next']['id']."'><h3 style='float: right; margin-right: 5%'>next →</h3></a>";
+            if($photo['prev']['id'] != null){
+                echo "<a href='../photo/".$photo['prev']['id']."'><h3 style='float: left; margin-left: 5%'>← previous</h3></a>";
+            }
+            if($photo['next']['id'] != null){
+                echo "<a href='../photo/".$photo['next']['id']."'><h3 style='float: right; margin-right: 5%'>next →</h3></a>";
+            }
         ?>
     </div>
     <?php endif; ?>
