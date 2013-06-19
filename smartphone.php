@@ -164,24 +164,23 @@ require_once "handle_tumblr.php";
           </div>
         </div>
     <div class="blog-posts">
-        <h2> Posts </h2>
+        <h2> Recent posts </h2>
         <?php
-
         ##
         ## get the latest posts from tumblr
         ##
-        $blog_url = "http://api.tumblr.com/v2/blog/ghoshbinayak.tumblr.com/posts/text?api_key=upraHHL2RL1JwKyg9LXX1TGyeJ8d0wZcFOus3xBf7x47pX1xyw";
-        $json = file_get_contents($blog_url);
-        $json_parsed = json_decode($json);
 
-        foreach($json_parsed->response->posts as $post){
-            $post_title = $post->title;
-            $post_body = $post->body;
+        $Posts = array_slice($Tumblr->getPostsShort('0', '7'), 1);
+        $date = new DateTime();
+        foreach($Posts as $entry){
             echo "<div class='blog-post'>";
-            echo "<h3>$post_title</h3>";
-            echo $post_body;
+            echo "<h3>".$entry['title']."</h3>";
+            $date->setTimestamp($entry['time']);
+            echo "<span style='font-size: 0.8em; font-style: italic; display: block; text-align: center'>".$date->format('jS F\, Y \a\t g:ia')."</span>";
+            echo $entry['body'];
+            echo "<a href='../blog/".$entry['id']."'><span style='font-weight: bold; display: block; text-align: right; text-decoration: none;'>read on ..</span></a>";
             echo "</div>";
-        }
+            }
 
         ?>
     </div>

@@ -12,19 +12,30 @@ class Tumblr{
                     ."&offset="
                     .$offset;
         $response = json_decode(file_get_contents($feedURL));
-        return $response;
+        $status = $response->response->blog->description;
+        $Posts = array(
+                'status' => $status,
+                );
+        foreach($response->response->posts as $entry){
+            $posttitle = $entry->title;
+            $postid = $entry->id;
+            $timestamp = $entry->timestamp;
+            $body = $entry->body;
+            $Posts[] = array(
+                        'title' => $posttitle,
+                        'id' => $postid,
+                        'time' => $timestamp,
+                        'body' => $body);
+            };
+        return $Posts;
     }
     public function getPostsShort($offset, $maxresult){
-        $posts = $this->getPosts($offset, $maxresult);
-        foreach($posts->response->posts as $entry){
-            $postid = $entry->id;
-            $posturl = $entry->post_url;
-            $timestamp = $entry -> timestamp;
-            $posttitle = $entry -> title;
-            $postbody = $entry->body;
-            $shortbody = preg_split("|<p><!--\smore\s-->|", $postbody, 2);
-            print_r($shortbody);
+        $response = array_slice($this->getPosts($offset, $maxresult), 1);
+        foreach($response as &$entry){
+            $shortpost = preg_split("|<!--\smore\s-->|", $entry['body'], 2);
+            $entry['body'] = $shortpost['0'];
         }
+        return $response;
     }
 
 
