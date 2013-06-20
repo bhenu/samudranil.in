@@ -253,7 +253,7 @@ require_once "handle_tumblr.php";
         <?php
         $Posts = $Tumblr->getPosts('0', '10');
         $summary = $Posts['status'];
-        echo "<h2><span style='font-size: 2em'>“ </span>" . $summary . "<span style='font-size: 2em'> ”</span></h2>";
+        echo "<h2>“ </span>" . $summary . "<span style='font-size: 2em'> ”</h2>";
         $Posts = array_slice($Posts, 1);
         $date = new DateTime();
         foreach($Posts as $entry){
