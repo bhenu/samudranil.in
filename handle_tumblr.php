@@ -8,7 +8,7 @@ class Tumblr{
                     ."/posts/text?api_key="
                     .$this->apikey
                     ."&limit="
-                    .$maxresult
+                    .$maxresults
                     ."&offset="
                     .$offset;
         $response = json_decode(file_get_contents($feedURL));
@@ -22,7 +22,8 @@ class Tumblr{
             $posttitle = $entry->title;
             $postid = $entry->id;
             $timestamp = $entry->timestamp;
-            $body = $entry->body;
+            $body = preg_replace("|<div(.+)>|", "", $entry->body);
+            $body = preg_replace("|</div>|", "", $body);
             $Posts[] = array(
                         'title' => $posttitle,
                         'id' => $postid,

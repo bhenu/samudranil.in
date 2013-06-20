@@ -5,14 +5,11 @@ RewriteEngine on
 RewriteCond %{REQUEST_URI} albums/([0-9]+)
 RewriteRule albums/([0-9]+) /?page=albums&id=$1 [PT]
 
-RewriteCond %{REQUEST_URI} albums
+RewriteCond %{REQUEST_URI} albums/?$
 RewriteRule albums /?page=albums [PT]
 
 RewriteCond %{REQUEST_URI} photo/([0-9]+)
 RewriteRule photo/([0-9]+) /?page=photo&id=$1 [PT]
-
-RewriteCond %{REQUEST_URI} blog/([0-9]+)/page/([0-9]+)
-RewriteRule blog/([0-9]+)/page/([0-9]+) /?page=blog&id=$1&offset=$2 [PT]
 
 RewriteCond %{REQUEST_URI} blog/([0-9]+)
 RewriteRule blog/([0-9]+) /?page=blog&id=$1 [PT]

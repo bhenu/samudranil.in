@@ -171,7 +171,7 @@ require_once "handle_tumblr.php";
         ## get the latest posts from tumblr
         ##
 
-        $Posts = array_slice($Tumblr->getPostsShort('0', '7'), 2);
+        $Posts = $Tumblr->getPostsShort('0', '7');
         $date = new DateTime();
         foreach($Posts as $entry){
             echo "<div class='blog-post'>";
@@ -266,7 +266,7 @@ require_once "handle_tumblr.php";
             $offset = 0;
         }
         $summary = $Posts['status'];
-        $total_posts = $Posts['total_post'];
+        $total_posts = $Posts['total_posts'];
         echo "<h2>“ " . $summary . " ”</h2>";
         $Posts = array_slice($Posts, 2);
         $date = new DateTime();
@@ -279,16 +279,19 @@ require_once "handle_tumblr.php";
             echo "</div>";
         }
 
-        if($offset > 0){
-            echo "<a href='http://samudranil-in.heroku.com/blog/page/".($offset - 1)."'><h3 style='float: left; margin-left: 5%'>← previous</h3></a>";
+        if($offset){
+            echo "<a href='http://samudranil-in.heroku.com/blog/page/".($offset - 1)."'><h3 style='float: right; margin-right: 5%'>next →</h3></a>";
             }
         if(($total_posts - ($offset +1)*10) > 0){
-            echo "<a href='http://samudranil-in.heroku.com/blog/page/".($offset +1)."'><h3 style='float: right; margin-right: 5%'>next →</h3></a>";
+            echo "<a href='http://samudranil-in.heroku.com/blog/page/".($offset + 1)."'><h3 style='float: left; margin-left: 5%'>← previous</h3></a>";
         }
         ?>
+    </div>
+    <?php elseif(isset($_GET['page']) && $_GET['page'] == 'blog' && isset($_GET['id'])): ?>
+    <div class='blog-container'>
+        <p style="color: white"><?php echo $_GET['id'] ?></p>
     </div>
     <?php endif; ?>
   </div>
 </body>
-
 </html>
