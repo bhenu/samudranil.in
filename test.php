@@ -2,7 +2,7 @@
 require_once "handle_tumblr.php";
 require_once "handle_picasa.php";
 echo "<pre>";
-$photos = $Tumblr->getPosts('0', '5');
+$photos = $Tumblr->getSinglePost('53442472180');
 print_r($photos);
 echo "</pre>";
 ?>

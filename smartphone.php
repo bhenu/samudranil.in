@@ -289,7 +289,17 @@ require_once "handle_tumblr.php";
     </div>
     <?php elseif(isset($_GET['page']) && $_GET['page'] == 'blog' && isset($_GET['id'])): ?>
     <div class='blog-container'>
-        <p style="color: white"><?php echo $_GET['id'] ?></p>
+        <?php
+        $Post = $Tumblr->getSinglePost($_GET['id']);
+        echo "<div class='blog-post'>";
+        echo "<h3>".$Post['title']."</h3>";
+        $date = new DateTime();
+        $date->setTimestamp($Post['time']);
+        echo "<span style='font-size: 0.8em; font-style: italic; display: block; text-align: center'>".$date->format('jS F\, Y \a\t g:ia')."</span>";
+        echo $Post['body'];
+        echo "</div>";
+        ?>
+        <a href="http://samudranil-in.heroku.com/blog"><h3>back to blog</h3></a>
     </div>
     <?php endif; ?>
   </div>

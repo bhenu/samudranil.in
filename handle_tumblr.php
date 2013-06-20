@@ -32,6 +32,8 @@ class Tumblr{
             };
         return $Posts;
     }
+
+    //get short posts
     public function getPostsShort($offset, $maxresult){
         $response = array_slice($this->getPosts($offset, $maxresult), 2);
         foreach($response as &$entry){
@@ -41,6 +43,24 @@ class Tumblr{
         return $response;
     }
 
+    //get single post
+    public function getSinglePost($postid){
+        $feedURL = "http://api.tumblr.com/v2/blog/"
+            .$this->userid
+            ."/posts/text?api_key="
+            .$this->apikey
+            ."&id="
+            .$postid;
+        $response = json_decode(file_get_contents($feedURL));
+        $post = $response->response->posts[0];
+        $posttitle = $post->title;
+        $body = $post->body;
+        $timestamp = $post->timestamp;
+        return array(
+                    'title' => $posttitle,
+                    'body' => $body,
+                    'time' => $timestamp);
+    }
 
 }
 
