@@ -253,6 +253,7 @@ require_once "handle_tumblr.php";
         <?php
         $Posts = $Tumblr->getPosts('0', '10');
         $summary = $Posts['status'];
+        echo "<h2><span style='font-size: 2em'>“ </span>" . $summary . "<span style='font-size: 2em'> ”</span></h2>";
         $Posts = array_slice($Posts, 1);
         $date = new DateTime();
         foreach($Posts as $entry){
@@ -261,7 +262,6 @@ require_once "handle_tumblr.php";
             $date->setTimestamp($entry['time']);
             echo "<span style='font-size: 0.8em; font-style: italic; display: block; text-align: center'>".$date->format('jS F\, Y \a\t g:ia')."</span>";
             echo $entry['body'];
-            echo "<a href='http://samudranil-in.heroku.com/blog/".$entry['id']."'><span style='font-weight: bold; display: block; text-align: right'>read on ..</span></a>";
             echo "</div>";
         }
         ?>
