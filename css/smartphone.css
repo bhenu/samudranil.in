@@ -4,7 +4,7 @@ body{
 
 h2, h3{
   font-weight: lighter;
-  font-size: 2em;
+  font-size: 2.5em;
   color: #b3b3b3;
 }
 
@@ -28,24 +28,15 @@ div.photo-slider {
 }
 
 #logo {
-  width: 100px;
+  width: 85px;
   float: left;
-  -webkit-border-radius: 50px;
-  -moz-border-radius: 50px;
-  border-radius: 50px;
-  background: #000;
-  margin-top: -20px;
   margin-left: 2%;
-  height: 100px;
-  -moz-box-shadow: 1px 1px 5px 2px;
-  -webkit-box-shadow: 1px 1px 5px 2px;
-  box-shadow: 1px 1px 5px 2px;
 }
 
 #logo img {
-  margin-left: 5px;
-  margin-top: 22px;
-  width: 72%;
+  margin-left: 0;
+  margin-top: 0;
+  width: 100%;
 }
 
 

@@ -71,7 +71,7 @@ require_once "handle_tumblr.php";
 </head>
 <body>
   <div class="header">
-    <a href="http://samudranil-in.heroku.com/index.php"><div id="logo"><img src="http://samudranil-in.heroku.com/images/logo_m.png" /></div></a>
+    <a href="http://samudranil-in.heroku.com/index.php"><div id="logo"><img src="http://samudranil-in.heroku.com/images/logo_s.png" /></div></a>
     <div id="menu"></div>
   </div>
   <div class="menu-list">
@@ -81,7 +81,8 @@ require_once "handle_tumblr.php";
         <a href="http://samudranil-in.heroku.com/about/">about</a>
   </div>
   <div class="content-area">
-    <?php if(!isset($_GET['page'])): ?>
+    <!-- home page-->
+    <?php if(!isset($_GET['page'])):?>
     <div class="photo-slider">
      <div id='slider' class='swipe'>
       <div class='swipe-wrap'>
@@ -170,7 +171,7 @@ require_once "handle_tumblr.php";
         ## get the latest posts from tumblr
         ##
 
-        $Posts = array_slice($Tumblr->getPostsShort('0', '7'), 1);
+        $Posts = array_slice($Tumblr->getPostsShort('0', '7'), 2);
         $date = new DateTime();
         foreach($Posts as $entry){
             echo "<div class='blog-post'>";
@@ -181,9 +182,11 @@ require_once "handle_tumblr.php";
             echo "<a href='http://samudranil-in.heroku.com/blog/".$entry['id']."'><span style='font-weight: bold; display: block; text-align: right'>read on ..</span></a>";
             echo "</div>";
             }
+            echo "<a href='http://samudranil-in.heroku.com/blog/'><h3 style='text-align: center'>visit the blog</h3></a>";
 
         ?>
     </div>
+    <!-- albums page -->
     <?php elseif(isset($_GET['page']) && $_GET['page'] == 'albums' && !isset($_GET['id'])) : ?>
         <div class="albums only">
         <h2> Albums</h2>
@@ -210,6 +213,7 @@ require_once "handle_tumblr.php";
                 echo "</div>";
         ?>
         </div>
+    <!-- album photos page -->
     <?php elseif(isset($_GET['page']) && isset($_GET['id']) && $_GET['page'] == 'albums'): ?>
         <div class="photos only">
             <?php
@@ -233,6 +237,7 @@ require_once "handle_tumblr.php";
             ?>
 
         </div>
+    <!-- photo viewer page -->
     <?php elseif(isset($_GET['page']) && $_GET['page'] == 'photo' && isset($_GET['id'])): ?>
     <div class='photo-container'>
         <?php
@@ -248,13 +253,22 @@ require_once "handle_tumblr.php";
             }
         ?>
     </div>
+    <!-- blog main page -->
     <?php elseif(isset($_GET['page']) && $_GET['page'] == 'blog' && !isset($_GET['id'])): ?>
     <div class='blog-container'>
         <?php
-        $Posts = $Tumblr->getPosts('0', '10');
+        if (isset($_GET['offset'])){
+            $offset = $_GET['offset'];
+            $Posts = $Tumblr->getPosts(($offset*10 -1), '10');
+        }
+        else {
+            $Posts = $Tumblr->getPosts('0', '10');
+            $offset = 0;
+        }
         $summary = $Posts['status'];
-        echo "<h2>“ </span>" . $summary . " ”</h2>";
-        $Posts = array_slice($Posts, 1);
+        $total_posts = $Posts['total_post'];
+        echo "<h2>“ " . $summary . " ”</h2>";
+        $Posts = array_slice($Posts, 2);
         $date = new DateTime();
         foreach($Posts as $entry){
             echo "<div class='blog-post'>";
@@ -263,6 +277,13 @@ require_once "handle_tumblr.php";
             echo "<span style='font-size: 0.8em; font-style: italic; display: block; text-align: center'>".$date->format('jS F\, Y \a\t g:ia')."</span>";
             echo $entry['body'];
             echo "</div>";
+        }
+
+        if($offset > 0){
+            echo "<a href='http://samudranil-in.heroku.com/blog/page/".($offset - 1)."'><h3 style='float: left; margin-left: 5%'>← previous</h3></a>";
+            }
+        if(($total_posts - ($offset +1)*10) > 0){
+            echo "<a href='http://samudranil-in.heroku.com/blog/page/".($offset +1)."'><h3 style='float: right; margin-right: 5%'>next →</h3></a>";
         }
         ?>
     </div>

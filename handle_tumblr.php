@@ -13,8 +13,10 @@ class Tumblr{
                     .$offset;
         $response = json_decode(file_get_contents($feedURL));
         $status = $response->response->blog->description;
+        $total_posts = $response->response->total_posts;
         $Posts = array(
                 'status' => $status,
+                'total_posts' => $total_posts,
                 );
         foreach($response->response->posts as $entry){
             $posttitle = $entry->title;
@@ -30,7 +32,7 @@ class Tumblr{
         return $Posts;
     }
     public function getPostsShort($offset, $maxresult){
-        $response = array_slice($this->getPosts($offset, $maxresult), 1);
+        $response = array_slice($this->getPosts($offset, $maxresult), 2);
         foreach($response as &$entry){
             $shortpost = preg_split("|<!--\smore\s-->|", $entry['body'], 2);
             $entry['body'] = $shortpost['0'];
