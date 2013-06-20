@@ -182,6 +182,8 @@ div.photo-slider {
     text-align: center;
     text-shadow: 0 1px 0 white;
     color: #5a5a5a;
+    margin-bottom: 7px;
+    line-height: normal;
 
 }
 
@@ -189,6 +191,7 @@ div.photo-slider {
     clear: both;
     margin-top: 10px;
     margin-bottom: 10px;
+    width: 100%;
 }
 
 .only{
