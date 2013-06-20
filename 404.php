@@ -9,6 +9,7 @@
 <link rel="shortcut icon" href="http://samudranil-in.heroku.com/images/favicon.ico" />
 <link rel="stylesheet" href="http://samudranil-in.heroku.com/css/main.css" />
 <link rel="stylesheet" href="http://samudranil-in.heroku.com/css/smartphone.css" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 </head>
 <body>
   <div class="header">
