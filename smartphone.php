@@ -62,6 +62,7 @@ require_once "handle_tumblr.php";
     $(function(){
         //menu slide
         $('div.menu-list').hide();
+        $('#menu').show();
         $("#menu").click(function(){
                    $('div.menu-list').slideToggle();
         });
@@ -141,7 +142,7 @@ require_once "handle_tumblr.php";
 
     <div class="albums">
         <h2> Albums</h2>
-        <div id="album-swipe" class="swipe">
+        <div id="album-swipe" class="swipe" style='visibility: visible'>
         <div class='swipe-wrap'>
         <?php
             ##

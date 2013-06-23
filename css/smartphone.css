@@ -48,6 +48,7 @@ div.photo-slider {
     margin-right: 3%;
     margin-top: 24px;
     width: 43px;
+    visibility: hidden;
 }
 
 .menu-list {
