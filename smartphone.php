@@ -84,7 +84,7 @@ require_once "handle_tumblr.php";
     <!-- home page-->
     <?php if(!isset($_GET['page'])):?>
     <div class="photo-slider">
-     <div id='slider' class='swipe'>
+     <div id='slider' class='swipe' style='visibility: visible'>
       <div class='swipe-wrap'>
         <?php
         ##
@@ -116,7 +116,7 @@ require_once "handle_tumblr.php";
 
     <div class="recent">
     <h2>Recent Clix</h2>
-        <div id="recent-swipe" class="swipe">
+        <div id="recent-swipe" class="swipe" style='visibility: visible'>
             <div class='swipe-wrap'>
             <?php
                 ##
