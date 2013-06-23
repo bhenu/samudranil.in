@@ -185,7 +185,7 @@ div.photo-slider {
     width: 100%;
 }
 
-.blog-container {
+.blog-container, .photo-container {
     overflow: hidden;
 }
 
