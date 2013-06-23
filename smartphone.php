@@ -62,7 +62,7 @@ require_once "handle_tumblr.php";
     $(function(){
         //menu slide
         $('div.menu-list').hide();
-        $('#menu').show();
+        $('#menu').css('visibility' , 'visible');
         $("#menu").click(function(){
                    $('div.menu-list').slideToggle();
         });
