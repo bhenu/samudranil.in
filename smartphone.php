@@ -280,10 +280,10 @@ require_once "handle_tumblr.php";
         }
 
         if($offset){
-            echo "<a href='http://samudranil-in.heroku.com/blog/page/".($offset - 1)."'><h3 style='float: right; margin-right: 5%'>next →</h3></a>";
+            echo "<a href='http://samudranil-in.heroku.com/blog/page/".($offset - 1)."'><h3 style='float: right; margin-right: 5%'>newer →</h3></a>";
             }
         if(($total_posts - ($offset +1)*10) > 0){
-            echo "<a href='http://samudranil-in.heroku.com/blog/page/".($offset + 1)."'><h3 style='float: left; margin-left: 5%'>← previous</h3></a>";
+            echo "<a href='http://samudranil-in.heroku.com/blog/page/".($offset + 1)."'><h3 style='float: left; margin-left: 5%'>← older</h3></a>";
         }
         ?>
     </div>
@@ -302,6 +302,16 @@ require_once "handle_tumblr.php";
         <a href="http://samudranil-in.heroku.com/blog"><h3>back to blog</h3></a>
     </div>
     <?php endif; ?>
+  </div>
+  <div class="footer">
+      <div class='contact-list'>
+          <a href='//www.facebook.com/samudranil.roy'>facebook</a>
+          <a href='mailto:samudranil22@gmail.com'>email</a>
+          <a href='tel:919476289391'>+91 9476289391</a>
+      </div>
+      <div class='site-credits'>
+          <a href='http://samudranil.heroku.com/credits'>site credits</a>
+      </div>
   </div>
 </body>
 </html>

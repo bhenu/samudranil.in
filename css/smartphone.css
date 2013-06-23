@@ -188,3 +188,15 @@ div.photo-slider {
 .only{
     border-top: 0;
 }
+
+.footer {
+    background: none repeat scroll 0% 0% black;
+    padding: 10px;
+    border-top: 1px dashed rgb(212, 212, 212);
+}
+
+.footer .contact-list a {
+    font-size: 1.3em;
+    line-height: 2;
+    color: #aaaaaa;
+}
