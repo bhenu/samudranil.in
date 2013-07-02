@@ -11,6 +11,7 @@ require_once "handle_tumblr.php";
 <meta name='keywords' content='Samudranil Roy, Samudranil, Photography, Nature Photography, photos'>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <link rel="shortcut icon" href="images/favicon.ico" />
+<link rel="stylesheet" href="http://samudranil-in.heroku.com/css/normalize.css" />
 <link rel="stylesheet" href="http://samudranil-in.heroku.com/css/main.css" />
 <link rel="stylesheet" href="http://samudranil-in.heroku.com/css/smartphone.css" />
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
