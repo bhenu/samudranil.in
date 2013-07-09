@@ -20,7 +20,8 @@ div.header, div.content-area, div.footer  {
 
 div.header{
   height: 85px;
-  background: #FF0000;
+  background: #E1E1E1f
+  ;
   overflow: hidden;
 }
 div.photo-slider {
