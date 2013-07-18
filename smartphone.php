@@ -11,14 +11,14 @@ require_once "handle_tumblr.php";
 <meta name='keywords' content='Samudranil Roy, Samudranil, Photography, Nature Photography, photos'>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <link rel="shortcut icon" href="images/favicon.ico" />
-<link rel="stylesheet" href="http://samudranil-in.herokuapp.com/css/normalize.css" />
-<link rel="stylesheet" href="http://samudranil-in.herokuapp.com/css/main.css" />
-<link rel="stylesheet" href="http://samudranil-in.herokuapp.com/css/smartphone.css" />
+<link rel="stylesheet" href="http://localhost/css/normalize.css" />
+<link rel="stylesheet" href="http://localhost/css/main.css" />
+<link rel="stylesheet" href="http://localhost/css/smartphone.css" />
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 <?php if (!isset($_GET['page'])): ?>
-    <script src="http://samudranil-in.herokuapp.com/scripts/swipe.js"></script>
+    <script src="http://localhost/scripts/swipe.js"></script>
     <script>
     $(function(){
 
@@ -73,14 +73,14 @@ require_once "handle_tumblr.php";
 </head>
 <body>
   <div class="header">
-    <a href="http://samudranil-in.herokuapp.com/index.php"><div id="logo"><img src="http://samudranil-in.herokuapp.com/images/logo_s.png" /></div></a>
+    <a href="http://localhost/index.php"><div id="logo"><img src="http://localhost/images/logo_s.png" /></div></a>
     <div id="menu"></div>
   </div>
   <div class="menu-list">
-        <a href="http://samudranil-in.herokuapp.com/">home</a>
-        <a href="http://samudranil-in.herokuapp.com/albums/">albums</a>
-        <a href="http://samudranil-in.herokuapp.com/blog/">blog</a>
-        <a href="http://samudranil-in.herokuapp.com/about/">about</a>
+        <a href="http://localhost/">home</a>
+        <a href="http://localhost/albums/">albums</a>
+        <a href="http://localhost/blog/">blog</a>
+        <a href="http://localhost/about/">about</a>
   </div>
   <div class="content-area">
     <!-- home page-->
@@ -131,7 +131,7 @@ require_once "handle_tumblr.php";
                         if($elem_counter!= 0 && $elem_counter%4 == 0){
                             echo "</div><div>";
                             }
-                        echo "<a href='http://samudranil-in.herokuapp.com/photo/".$entry['photoid']."'><div class='recent-element'><img class='pics' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div></a>";
+                        echo "<a href='http://localhost/photo/".$entry['photoid']."'><div class='recent-element'><img class='pics' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div></a>";
                         $elem_counter += 1;
                         }
                 echo "</div>";
@@ -156,7 +156,7 @@ require_once "handle_tumblr.php";
                 if($elem_counter != 0 && $elem_counter%2 == 0){
                     echo "</div><div>";
                 }
-                echo "<a href=\"http://samudranil-in.herokuapp.com/albums/".$entry['albumid']."\"><div class='album-elements'>";
+                echo "<a href=\"http://localhost/albums/".$entry['albumid']."\"><div class='album-elements'>";
                 echo "<img alt='" . $entry['title'] . "' class='pics' src=\"" . $entry['url'] . "\"/>";
                 echo "<p class='albumtitle'>" . $entry['title'] . "</p></div></a>";
                 $elem_counter += 1;
@@ -177,14 +177,14 @@ require_once "handle_tumblr.php";
         $date = new DateTime();
         foreach($Posts as $entry){
             echo "<div class='blog-post'>";
-            echo "<h3><a href='http://samudranil-in.herokuapp.com/blog/".$entry['id']."'>".$entry['title']."</a></h3>";
+            echo "<h3><a href='http://localhost/blog/".$entry['id']."'>".$entry['title']."</a></h3>";
             $date->setTimestamp($entry['time']);
             echo "<span style='font-size: 0.8em; font-style: italic; display: block; text-align: center'>".$date->format('jS F\, Y \a\t g:ia')."</span>";
             echo $entry['body'];
-            echo "<a href='http://samudranil-in.herokuapp.com/blog/".$entry['id']."'><span style='font-weight: bold; display: block; text-align: right'>read on ..</span></a>";
+            echo "<a href='http://localhost/blog/".$entry['id']."'><span style='font-weight: bold; display: block; text-align: right'>read on ..</span></a>";
             echo "</div>";
             }
-            echo "<a href='http://samudranil-in.herokuapp.com/blog/'><h3 style='text-align: center'>visit the blog</h3></a>";
+            echo "<a href='http://localhost/blog/'><h3 style='text-align: center'>visit the blog</h3></a>";
 
         ?>
     </div>
@@ -203,7 +203,7 @@ require_once "handle_tumblr.php";
                 if($elem_counter != 0 && $elem_counter%2 == 0){
                     echo "</div><div class=\"elements-wrapper\">";
                 }
-                echo "<a href='http://samudranil-in.herokuapp.com/albums/".$entry['albumid']."'><div class='album-elements'>";
+                echo "<a href='http://localhost/albums/".$entry['albumid']."'><div class='album-elements'>";
                 echo "<img alt='" . $entry['title'] . "' class='pics' src=\"" .
                 $entry['url'] . "\"/>";
 
@@ -223,7 +223,7 @@ require_once "handle_tumblr.php";
             ## get the photos in an album from picasa
             ##
             $photos = $Picasa->getAlbumPhotos($_GET['id'], '244c', '1', '1000');
-            echo "<a href='http://samudranil-in.herokuapp.com/albums/'><h3>← all aubums</h3></a>";
+            echo "<a href='http://localhost/albums/'><h3>← all aubums</h3></a>";
             echo "<h2>" . $photos['albumtitle'] . "</h2>";
             $photos = array_slice($photos, 2);
             $elem_counter = 0;
@@ -232,7 +232,7 @@ require_once "handle_tumblr.php";
                     if($elem_counter!= 0 && $elem_counter%2 == 0){
                         echo "</div><div class='element-wrapper'>";
                         }
-                    echo "<div class='photo-element'><a href='http://samudranil-in.herokuapp.com/photo/".$entry['photoid']."'><img class='pics' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div></a>";
+                    echo "<div class='photo-element'><a href='http://localhost/photo/".$entry['photoid']."'><img class='pics' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div></a>";
                     $elem_counter += 1;
                     }
             echo "</div>";
@@ -244,14 +244,14 @@ require_once "handle_tumblr.php";
     <div class='photo-container'>
         <?php
             $photo = $Picasa->getPhoto($_GET['id'], '640');
-            echo "<a href='http://samudranil-in.herokuapp.com/albums/".$photo['albumid']."'><h3>← albums / " . $photo['albumtitle'] . "</h3></a>";
+            echo "<a href='http://localhost/albums/".$photo['albumid']."'><h3>← albums / " . $photo['albumtitle'] . "</h3></a>";
             echo "<img class=\"pics\" src=\"" . $photo['url'] . "\"/>";
             echo "<h2>".$photo['title']."</h2>";
             if($photo['prev']['id'] != null){
-                echo "<a href='http://samudranil-in.herokuapp.com/photo/".$photo['prev']['id']."'><h3 style='float: left; margin-left: 5%'>← previous</h3></a>";
+                echo "<a href='http://localhost/photo/".$photo['prev']['id']."'><h3 style='float: left; margin-left: 5%'>← previous</h3></a>";
             }
             if($photo['next']['id'] != null){
-                echo "<a href='http://samudranil-in.herokuapp.com/photo/".$photo['next']['id']."'><h3 style='float: right; margin-right: 5%'>next →</h3></a>";
+                echo "<a href='http://localhost/photo/".$photo['next']['id']."'><h3 style='float: right; margin-right: 5%'>next →</h3></a>";
             }
         ?>
     </div>
@@ -274,7 +274,7 @@ require_once "handle_tumblr.php";
         $date = new DateTime();
         foreach($Posts as $entry){
             echo "<div class='blog-post'>";
-            echo "<h3><a href='http://samudranil-in.herokuapp.com/blog/".$entry['id']."'>".$entry['title']."</a></h3>";
+            echo "<h3><a href='http://localhost/blog/".$entry['id']."'>".$entry['title']."</a></h3>";
             $date->setTimestamp($entry['time']);
             echo "<span style='font-size: 0.8em; font-style: italic; display: block; text-align: center'>".$date->format('jS F\, Y \a\t g:ia')."</span>";
             echo $entry['body'];
@@ -282,10 +282,10 @@ require_once "handle_tumblr.php";
         }
 
         if($offset){
-            echo "<a href='http://samudranil-in.herokuapp.com/blog/page/".($offset - 1)."'><h3 style='float: right; margin-right: 5%'>newer →</h3></a>";
+            echo "<a href='http://localhost/blog/page/".($offset - 1)."'><h3 style='float: right; margin-right: 5%'>newer →</h3></a>";
             }
         if(($total_posts - ($offset +1)*10) > 0){
-            echo "<a href='http://samudranil-in.herokuapp.com/blog/page/".($offset + 1)."'><h3 style='float: left; margin-left: 5%'>← older</h3></a>";
+            echo "<a href='http://localhost/blog/page/".($offset + 1)."'><h3 style='float: left; margin-left: 5%'>← older</h3></a>";
         }
         ?>
     </div>
@@ -301,7 +301,7 @@ require_once "handle_tumblr.php";
         echo $Post['body'];
         echo "</div>";
         ?>
-        <a href="http://samudranil-in.herokuapp.com/blog"><h3>back to blog</h3></a>
+        <a href="http://localhost/blog"><h3>back to blog</h3></a>
     </div>
     <?php endif; ?>
   </div>
