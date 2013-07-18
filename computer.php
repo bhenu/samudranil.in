@@ -15,11 +15,55 @@ require_once "handle_tumblr.php";
 <meta name='keywords' content='Samudranil Roy, Samudranil, Photography, Nature Photography, photos'>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="shortcut icon" href="images/favicon.ico" />
-<link rel="stylesheet" href="http://localhost/css/normalize.css" />
-<link rel="stylesheet" href="http://localhost/css/main.css" />
-<link rel="stylesheet" href="http://localhost/css/computer.css" />
+<link rel="stylesheet" href="http://samudranil-in.herokuapp.com/css/normalize.css" />
+<link rel="stylesheet" href="http://samudranil-in.herokuapp.com/css/main.css" />
+<link rel="stylesheet" href="http://samudranil-in.herokuapp.com/css/computer.css" />
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+<?php if (!isset($_GET['page'])): ?>
+    <script src="http://samudranil-in.herokuapp.com/scripts/swipe.js"></script>
+    <script>
+    $(function(){
+
+        var bullets = document.getElementById('position').getElementsByTagName('li');
+        var slider = Swipe(document.getElementById('slider'), {
+            auto: 3000,
+            continuous: true,
+            callback: function(pos) {
+                    var i = bullets.length;
+                    while (i--) {
+                    bullets[i].className = ' ';
+                    }
+                    bullets[pos].className = 'on';
+            }
+        });
+
+        window.albumSlide = new Swipe(document.getElementById('album-swipe'), {
+                              startSlide: 2,
+                              speed: 400,
+                              auto: 3000,
+                              continuous: true,
+                              disableScroll: false,
+                              stopPropagation: true
+                              });
+
+        window.recentSlide = new Swipe(document.getElementById('recent-swipe'), {
+                              startSlide: 2,
+                              speed: 400,
+                              auto: 3000,
+                              continuous: true,
+                              disableScroll: false,
+                              stopPropagation: true
+                              });
+
+
+
+    })
+
+    </script>
+<?php endif; ?>
+
 <script type='text/javascript'>
 
 </script>
@@ -29,7 +73,7 @@ require_once "handle_tumblr.php";
         <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
     <aside class='navbar'>
-        <div id="logo"><img src="http://localhost/images/Logo.png" alt="logo"></div>
+        <div id="logo"><img src="http://samudranil-in.herokuapp.com/images/Logo.png" alt="logo"></div>
         <div id="links">
             <ul>
                 <li>home</li>

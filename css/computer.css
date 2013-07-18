@@ -30,10 +30,11 @@ aside {
     color: black;
     line-height: 43px;
     padding-top: 2px;
+    cursor: pointer;
     }
 
 body {
-    background: url('http://localhost/images/binding_dark.png');
+    background: url('http://samudranil-in.herokuapp.com/images/binding_dark.png');
     }
 
 #logo img {
@@ -65,7 +66,7 @@ section.container {
     overflow: auto;
     float:right;
     position: absolute;
-    left: 20%;
+    margin: 0 auto;
     top: 0;
     bottom: 0;
     right: 0;
