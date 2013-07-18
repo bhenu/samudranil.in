@@ -20,7 +20,7 @@ aside {
     font-size: 1.3em;
     border-bottom: 2px groove rgba(96, 96, 96, 0.5);
     line-height: 45px;
-    color: #2a2a2a;
+    color: black;
     text-shadow: 0 1px 1px #c0c0c0;
     -moz-text-shadow: 0 1px 1px 0 #c0c0c0;
     -webkit-text-shadow: 0 1px 1px 0 #c0c0c0;
@@ -28,8 +28,8 @@ aside {
 
 #links li:hover {
     color: black;
-    line-height: 43px;
-    padding-top: 2px;
+    line-height: 40px;
+    padding-top: 5px;
     cursor: pointer;
     }
 
