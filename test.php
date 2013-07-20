@@ -32,12 +32,10 @@
 
 -->
 <?php
-
-require_once 'handle_picasa.php';
-$max_photo_size = "1600";
-$response = $Picasa->getAlbumPhotos('5687840154703863313', '144', '1', '20');
+require_once "handle_tumblr.php";
+require_once "handle_picasa.php";
 echo "<pre>";
-print_r($response);
+$photos = $Tumblr->getSinglePost('53442472180');
+print_r($photos);
 echo "</pre>";
-
 ?>

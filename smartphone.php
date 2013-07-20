@@ -1,3 +1,7 @@
+<?php
+require_once "handle_picasa.php";
+require_once "handle_tumblr.php";
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 <head>
@@ -7,95 +11,96 @@
 <meta name='keywords' content='Samudranil Roy, Samudranil, Photography, Nature Photography, photos'>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <link rel="shortcut icon" href="images/favicon.ico" />
-<link rel="stylesheet" href="css/main.css" />
-<link rel="stylesheet" href="css/smartphone.css" />
+<link rel="stylesheet" href="http://localhost/css/normalize.css" />
+<link rel="stylesheet" href="http://localhost/css/main.css" />
+<link rel="stylesheet" href="http://localhost/css/smartphone.css" />
+<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="scripts/swipe.js"></script>
+
+<?php if (!isset($_GET['page'])): ?>
+    <script src="http://localhost/scripts/swipe.js"></script>
+    <script>
+    $(function(){
+
+        var bullets = document.getElementById('position').getElementsByTagName('li');
+        var slider = Swipe(document.getElementById('slider'), {
+            auto: 3000,
+            continuous: true,
+            callback: function(pos) {
+                    var i = bullets.length;
+                    while (i--) {
+                    bullets[i].className = ' ';
+                    }
+                    bullets[pos].className = 'on';
+            }
+        });
+
+        window.albumSlide = new Swipe(document.getElementById('album-swipe'), {
+                              startSlide: 2,
+                              speed: 400,
+                              auto: 3000,
+                              continuous: true,
+                              disableScroll: false,
+                              stopPropagation: true
+                              });
+
+        window.recentSlide = new Swipe(document.getElementById('recent-swipe'), {
+                              startSlide: 2,
+                              speed: 400,
+                              auto: 3000,
+                              continuous: true,
+                              disableScroll: false,
+                              stopPropagation: true
+                              });
+
+
+
+    })
+
+    </script>
+<?php endif; ?>
 <script>
-$(function(){
-
-    var bullets = document.getElementById('position').getElementsByTagName('li');
-    var slider = Swipe(document.getElementById('slider'), {
-        auto: 3000,
-        continuous: true,
-        callback: function(pos) {
-                var i = bullets.length;
-                while (i--) {
-                bullets[i].className = ' ';
-                }
-                bullets[pos].className = 'on';
-        }
+    $(function(){
+        //menu slide
+        $('div.menu-list').hide();
+        $('#menu').css('visibility' , 'visible');
+        $("#menu").click(function(){
+                   $('div.menu-list').slideToggle();
+        });
     });
 
-    window.albumSlide = new Swipe(document.getElementById('album-swipe'), {
-                          startSlide: 2,
-                          speed: 400,
-                          auto: 3000,
-                          continuous: true,
-                          disableScroll: false,
-                          stopPropagation: true
-                          });
-                          
-    window.recentSlide = new Swipe(document.getElementById('recent-swipe'), {
-                          startSlide: 2,
-                          speed: 400,
-                          auto: 3000,
-                          continuous: true,
-                          disableScroll: false,
-                          stopPropagation: true
-                          });
-
-    //menu slide
-    $('div.menu-list').hide();
-    $("#menu").click(function(){
-               $('div.menu-list').slideToggle(); 
-    });
-
-})
-
-</script>
-
+ </script>
 </head>
 <body>
   <div class="header">
-    <a href="index.php"><div id="logo"><img src="images/logo_m.png" /></div></a>
+    <a href="http://localhost/index.php"><div id="logo"><img src="http://localhost/images/logo_s.png" /></div></a>
     <div id="menu"></div>
   </div>
   <div class="menu-list">
-        <a href="#about">about</a>
-        <a href="#blog">blog</a>
-        <a href="#albums">albums</a>
+        <a href="http://localhost/">home</a>
+        <a href="http://localhost/albums/">albums</a>
+        <a href="http://localhost/blog/">blog</a>
+        <a href="http://localhost/about/">about</a>
   </div>
   <div class="content-area">
+    <!-- home page-->
+    <?php if(!isset($_GET['page'])):?>
     <div class="photo-slider">
-     <div id='slider' class='swipe'>
+     <div id='slider' class='swipe' style='visibility: visible'>
       <div class='swipe-wrap'>
         <?php
-        
         ##
         ## retreive the featured images from picasa
         ##
-        
-        $userid = '114527766546168509668';
-        $albumid = '5632182463740846529';
-        $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid/albumid/$albumid?kind=photo&access=public&max-results=7";
-        $sxml = simplexml_load_file($feedURL);
-		foreach ($sxml->entry as $entry) {      
-        	$media = $entry->children('http://search.yahoo.com/mrss/');
-	        $thumbnail = $media->group->thumbnail[1];
-        	$imgurl = $thumbnail->attributes()->{'url'};
-        	$oldword = "s144";
-        	$newword = "s640";
-	        $imgurl = str_replace($oldword , $newword , $imgurl);
-
-        	echo "<div><img style='margin: 0 auto;' src=\"" . 
-        	$imgurl . "\"/></div>";
-        }
-
-		?>
-	  </div>
-	 </div>
-	 <nav>
+        $photos = array_slice($Picasa->getAlbumPhotos('5632182463740846529', '640', '1', '7'), 2);
+        foreach ($photos as $entry) {
+            echo "<div><img style='margin: 0 auto;' src=\"" .
+            $entry['url'] . "\"/></div>";
+            }
+        ?>
+      </div>
+     </div>
+     <nav>
 
     <ul id='position'>
       <li></li>
@@ -108,74 +113,52 @@ $(function(){
     </ul>
 
     </nav>
-	</div>
-	
-	
-	<div class="recent">
-	<h2>Recent Clix</h2>
-	    <div id="recent-swipe" class="swipe">
-	        <div class='swipe-wrap'>
-	        <?php 
-	            ##
-	            ## get the recently uploaded pics from picasa
-	            ##
-	            
-	            $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid?kind=photo&access=public&max-results=12&imgmax=244c";
-	            $sxml = simplexml_load_file($feedURL);
-	            $elem_counter = 0;
-	            echo "<div>";
-	            foreach ($sxml->entry as $entry){
-	                	$content = $entry->content;	                    	                    
-        	            $imgurl = $content->attributes()->{'src'};
-	                    if($elem_counter!= 0 && $elem_counter%4 == 0){
-	                        echo "</div><div>";
-	                        }
-	                    echo "<div class='recent-element'><img class='pic' alt='$title' src='$imgurl'/></div>";
-	                    $elem_counter += 1;
-	                    }
-	            echo "</div>";
-	        
-	        ?>
-	        </div>
-	    </div>
-	</div>
-	
+    </div>
+
+
+    <div class="recent">
+    <h2>Recent Clix</h2>
+        <div id="recent-swipe" class="swipe" style='visibility: visible'>
+            <div class='swipe-wrap'>
+            <?php
+                ##
+                ## get the recently uploaded pics from picasa
+                ##
+                $photos = $Picasa->getRecentPhotos('244c', '12');
+                $elem_counter = 0;
+                echo "<div>";
+                foreach ($photos as $entry){
+                        if($elem_counter!= 0 && $elem_counter%4 == 0){
+                            echo "</div><div>";
+                            }
+                        echo "<a href='http://localhost/photo/".$entry['photoid']."'><div class='recent-element'><img class='pics' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div></a>";
+                        $elem_counter += 1;
+                        }
+                echo "</div>";
+
+            ?>
+            </div>
+        </div>
+    </div>
+
     <div class="albums">
         <h2> Albums</h2>
-        <div id="album-swipe" class="swipe">
+        <div id="album-swipe" class="swipe" style='visibility: visible'>
         <div class='swipe-wrap'>
         <?php
-        
-            ##  
+            ##
             ##this piece of php retrieves the list of albums from picasa
             ##
-                 
-            $feedURL = "http://picasaweb.google.com/data/feed/base/user/$userid?kind=album&access=public";
-            $sxml = simplexml_load_file($feedURL);
+            $albums = $Picasa->getAlbums('244c');
             $elem_counter = 0;
             echo "<div>";
-            foreach ($sxml->entry as $entry) {
-	            $id = $entry->id;
-	            $oldword = "http://picasaweb.google.com/data/entry/base/user/114527766546168509668/albumid/";
-	            $newword = "";
-	            $id = str_replace($oldword , $newword , $id);
-	            $oldword = "?hl=en_US";
-	            $newword = "";
-	            $id = str_replace($oldword , $newword , $id);
-	            $title = $entry->title;
+            foreach ($albums as $entry) {
                 if($elem_counter != 0 && $elem_counter%2 == 0){
                     echo "</div><div>";
-                }	
-	            echo "<div class='album-elements'>";
-	            $media = $entry->children('http://search.yahoo.com/mrss/');
-		        $thumbnail = $media->group->thumbnail;
-		        $imgurl = $thumbnail->attributes()->{'url'};
-		        echo "<img alt='$title' class='pics' src=\"" . 
-	            $imgurl . "\"/>";
-	            
-	
-
-	            echo "<p class='albumtitle'>" . $title . "</p></div>";
+                }
+                echo "<a href=\"http://localhost/albums/".$entry['albumid']."\"><div class='album-elements'>";
+                echo "<img alt='" . $entry['title'] . "' class='pics' src=\"" . $entry['url'] . "\"/>";
+                echo "<p class='albumtitle'>" . $entry['title'] . "</p></div></a>";
                 $elem_counter += 1;
                 }
                 echo "</div>";
@@ -183,30 +166,154 @@ $(function(){
             </div>
           </div>
         </div>
-        <div class="blog-posts">
-        <h2> Posts </h2>
-        <?php 
-        
+    <div class="blog-posts">
+        <h2> Recent posts </h2>
+        <?php
         ##
         ## get the latest posts from tumblr
         ##
-        $blog_url = "http://api.tumblr.com/v2/blog/ghoshbinayak.tumblr.com/posts/text?api_key=upraHHL2RL1JwKyg9LXX1TGyeJ8d0wZcFOus3xBf7x47pX1xyw";
-        $json = file_get_contents($blog_url);
-        $json_parsed = json_decode($json);
-        
-        foreach($json_parsed->response->posts as $post){
-            $post_title = $post->title;
-            $post_body = $post->body;
+
+        $Posts = $Tumblr->getPostsShort('0', '7');
+        $date = new DateTime();
+        foreach($Posts as $entry){
             echo "<div class='blog-post'>";
-            echo "<h3>$post_title</h3>";
-            echo $post_body;
-            #echo "<div class='comments'>0</div><div class='time'>2050</div>";
+            echo "<h3><a href='http://localhost/blog/".$entry['id']."'>".$entry['title']."</a></h3>";
+            $date->setTimestamp($entry['time']);
+            echo "<span style='font-size: 0.8em; font-style: italic; display: block; text-align: center'>".$date->format('jS F\, Y \a\t g:ia')."</span>";
+            echo $entry['body'];
+            echo "<a href='http://localhost/blog/".$entry['id']."'><span style='font-weight: bold; display: block; text-align: right'>read on ..</span></a>";
             echo "</div>";
-        }
-        
+            }
+            echo "<a href='http://localhost/blog/'><h3 style='text-align: center'>visit the blog</h3></a>";
+
+        ?>
+    </div>
+    <!-- albums page -->
+    <?php elseif(isset($_GET['page']) && $_GET['page'] == 'albums' && !isset($_GET['id'])) : ?>
+        <div class="albums only">
+        <h2> Albums</h2>
+        <?php
+            ##
+            ##this piece of php retrieves the list of albums from picasa
+            ##
+            $albums = $Picasa->getAlbums('320c');
+            $elem_counter = 0;
+            echo "<div class=\"elements-wrapper\">";
+            foreach ($albums as $entry) {
+                if($elem_counter != 0 && $elem_counter%2 == 0){
+                    echo "</div><div class=\"elements-wrapper\">";
+                }
+                echo "<a href='http://localhost/albums/".$entry['albumid']."'><div class='album-elements'>";
+                echo "<img alt='" . $entry['title'] . "' class='pics' src=\"" .
+                $entry['url'] . "\"/>";
+
+
+
+                echo "<p class='albumtitle'>" . $entry['title'] . "</p></div></a>";
+                $elem_counter += 1;
+                }
+                echo "</div>";
         ?>
         </div>
+    <!-- album photos page -->
+    <?php elseif(isset($_GET['page']) && isset($_GET['id']) && $_GET['page'] == 'albums'): ?>
+        <div class="photos only">
+            <?php
+            ##
+            ## get the photos in an album from picasa
+            ##
+            $photos = $Picasa->getAlbumPhotos($_GET['id'], '244c', '1', '1000');
+            echo "<a href='http://localhost/albums/'><h3>← all aubums</h3></a>";
+            echo "<h2>" . $photos['albumtitle'] . "</h2>";
+            $photos = array_slice($photos, 2);
+            $elem_counter = 0;
+            echo "<div class='element-wrapper'>";
+            foreach ($photos as $entry){
+                    if($elem_counter!= 0 && $elem_counter%2 == 0){
+                        echo "</div><div class='element-wrapper'>";
+                        }
+                    echo "<div class='photo-element'><a href='http://localhost/photo/".$entry['photoid']."'><img class='pics' alt='". $entry['title'] . "' src='" . $entry['url'] . "'/></div></a>";
+                    $elem_counter += 1;
+                    }
+            echo "</div>";
+            ?>
+
+        </div>
+    <!-- photo viewer page -->
+    <?php elseif(isset($_GET['page']) && $_GET['page'] == 'photo' && isset($_GET['id'])): ?>
+    <div class='photo-container'>
+        <?php
+            $photo = $Picasa->getPhoto($_GET['id'], '640');
+            echo "<a href='http://localhost/albums/".$photo['albumid']."'><h3>← albums / " . $photo['albumtitle'] . "</h3></a>";
+            echo "<img class=\"pics\" src=\"" . $photo['url'] . "\"/>";
+            echo "<h2>".$photo['title']."</h2>";
+            if($photo['prev']['id'] != null){
+                echo "<a href='http://localhost/photo/".$photo['prev']['id']."'><h3 style='float: left; margin-left: 5%'>← previous</h3></a>";
+            }
+            if($photo['next']['id'] != null){
+                echo "<a href='http://localhost/photo/".$photo['next']['id']."'><h3 style='float: right; margin-right: 5%'>next →</h3></a>";
+            }
+        ?>
+    </div>
+    <!-- blog main page -->
+    <?php elseif(isset($_GET['page']) && $_GET['page'] == 'blog' && !isset($_GET['id'])): ?>
+    <div class='blog-container'>
+        <?php
+        if (isset($_GET['offset'])){
+            $offset = $_GET['offset'];
+            $Posts = $Tumblr->getPosts(($offset*10 -1), '10');
+        }
+        else {
+            $Posts = $Tumblr->getPosts('0', '10');
+            $offset = 0;
+        }
+        $summary = $Posts['status'];
+        $total_posts = $Posts['total_posts'];
+        echo "<h2>“ " . $summary . " ”</h2>";
+        $Posts = array_slice($Posts, 2);
+        $date = new DateTime();
+        foreach($Posts as $entry){
+            echo "<div class='blog-post'>";
+            echo "<h3><a href='http://localhost/blog/".$entry['id']."'>".$entry['title']."</a></h3>";
+            $date->setTimestamp($entry['time']);
+            echo "<span style='font-size: 0.8em; font-style: italic; display: block; text-align: center'>".$date->format('jS F\, Y \a\t g:ia')."</span>";
+            echo $entry['body'];
+            echo "</div>";
+        }
+
+        if($offset){
+            echo "<a href='http://localhost/blog/page/".($offset - 1)."'><h3 style='float: right; margin-right: 5%'>newer →</h3></a>";
+            }
+        if(($total_posts - ($offset +1)*10) > 0){
+            echo "<a href='http://localhost/blog/page/".($offset + 1)."'><h3 style='float: left; margin-left: 5%'>← older</h3></a>";
+        }
+        ?>
+    </div>
+    <?php elseif(isset($_GET['page']) && $_GET['page'] == 'blog' && isset($_GET['id'])): ?>
+    <div class='blog-container'>
+        <?php
+        $Post = $Tumblr->getSinglePost($_GET['id']);
+        echo "<div class='blog-post'>";
+        echo "<h3>".$Post['title']."</h3>";
+        $date = new DateTime();
+        $date->setTimestamp($Post['time']);
+        echo "<span style='font-size: 0.8em; font-style: italic; display: block; text-align: center'>".$date->format('jS F\, Y \a\t g:ia')."</span>";
+        echo $Post['body'];
+        echo "</div>";
+        ?>
+        <a href="http://localhost/blog"><h3>back to blog</h3></a>
+    </div>
+    <?php endif; ?>
+  </div>
+  <div class="footer">
+      <div class='contact-list'>
+          <a href='//www.facebook.com/samudranil.roy'>facebook</a>
+          <a href='mailto:samudranil22@gmail.com'>email</a>
+          <a href='tel:919476289391'>+91 9476289391</a>
+      </div>
+      <div class='site-credits'>
+          <a href='http://samudranil.heroku.com/credits'>site credits</a>
+      </div>
   </div>
 </body>
-
 </html>

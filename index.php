@@ -7,13 +7,13 @@ if (($detect->isAndroidOS() || $detect->isiPhone() || $detect-> isPalmOS() || $d
     include 'smartphone.php';
 }
 else if($detect->isTablet()){
-    include 'tabelt.php';
+    include 'smartphone.php';
 }
 else if(!$detect->isTablet() && !$detect->isMobile()){
     include 'computer.php';
 }
 else {
-    include 'default.php';
+    include 'smartphone.php';
 }
 
 ?>
