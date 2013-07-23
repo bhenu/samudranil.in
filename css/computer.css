@@ -45,15 +45,35 @@ body {
     border-radius: 50%;
     -moz-border-radius: 50%;
     -webkit-border-radius: 50%;
-    box-shadow: 1px 1px 5px #c4c4c4;
-    -moz-box-shadow: 1px 1px 5px #c4c4c4;
-    -webkit-box-shadow: 1px 1px 5px #c4c4c4;
+    box-shadow: 1px 1px 10px #000;
+    -moz-box-shadow: 1px 1px 10px #000;
+    -webkit-box-shadow: 1px 1px 10px #000;
     }
 
 #logo {
     padding-bottom: 10%;
     border-bottom: 2px groove rgba(96, 96, 96, 0.5);
     padding-top: 5%;
+    }
+
+#logo:hover {
+    background: rgba(196, 196, 196, 0.7);
+    }
+
+#cover {
+    height: auto;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 95%;
+    }
+
+#cover img {
+    width: 100%;
+    opacity: 0.25;
+    }
+
+#cover {
+    background: url('http://localhost/images/binding_dark.png');
     }
 
 aside .credit {
@@ -74,4 +94,29 @@ section.container {
     bottom: 0;
     right: 0;
     outline: 0 none;
+    left: 20%;
     }
+
+// Slide Style ------------------------------------------------
+ /* Prevent the slideshow from flashing on load */
+#slides {
+    display: none
+}
+
+/* Center the slideshow */
+.slide-container {
+    margin: 0 auto;
+    width: 90%;
+}
+
+/* Show active item in the pagination */
+.slidesjs-pagination .active {
+    color:red;
+}
+
+.slidesjs-navigation{
+    visibility: hidden;
+    }
+
+//-------------------------------------------------------------
+

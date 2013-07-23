@@ -22,51 +22,38 @@ require_once "handle_tumblr.php";
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 <?php if (!isset($_GET['page'])): ?>
-    <script src="http://localhost/scripts/swipe.js"></script>
+    <script src="http://localhost/scripts/jquery.slides.min.js"></script>
     <script>
-    $(function(){
-
-        var bullets = document.getElementById('position').getElementsByTagName('li');
-        var slider = Swipe(document.getElementById('slider'), {
-            auto: 3000,
-            continuous: true,
-            callback: function(pos) {
-                    var i = bullets.length;
-                    while (i--) {
-                    bullets[i].className = ' ';
-                    }
-                    bullets[pos].className = 'on';
-            }
-        });
-
-        window.albumSlide = new Swipe(document.getElementById('album-swipe'), {
-                              startSlide: 2,
-                              speed: 400,
-                              auto: 3000,
-                              continuous: true,
-                              disableScroll: false,
-                              stopPropagation: true
-                              });
-
-        window.recentSlide = new Swipe(document.getElementById('recent-swipe'), {
-                              startSlide: 2,
-                              speed: 400,
-                              auto: 3000,
-                              continuous: true,
-                              disableScroll: false,
-                              stopPropagation: true
-                              });
-
-
-
-    })
-
+    $(function() {
+      $('#featured').slidesjs({
+        width: 4,
+        height: 3,
+        play: {
+          active: true,
+          effect: "fade",
+          interval: 3000,
+          auto: true,
+          swap: true,
+          pauseOnHover: false,
+          restartDelay: 2500
+        },
+        navigation: {
+          active: false
+        },
+        pagination: {
+          effect: "fade"
+        },
+        effect: {
+          fade: {
+            speed: 400
+          }
+      }
+      });
+    });
     </script>
 <?php endif; ?>
 
-<script type='text/javascript'>
 
-</script>
 </head>
 <body>
      <!--[if lt IE 7]>
@@ -88,21 +75,21 @@ require_once "handle_tumblr.php";
         <div class="credit"> Designed by Binayak &amp; Bishakh</div>
     </aside>
     <section class="container">
-      <div id="slide">
-        <?php
-        ##
-        ## retreive the featured images from picasa
-        ##
-        //$photos = array_slice($Picasa->getAlbumPhotos('5632182463740846529', '800', '1', '7'), 2);
-        //foreach ($photos as $entry) {
-            //echo "<li><img style='margin: 0 auto;' src=\"" .
-            //$entry['url'] . "\"/></li>";
-            //}
-        ?>
-      </div>
+        <!-- home page-->
+        <?php if(!isset($_GET['page'])):?>
+        <div class='slide-container'>
+            <div id="featured">
+                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image1.jpg'></div>
+                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image2.jpg'></div>
+                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image3.jpg'></div>
+                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image4.jpg'></div>
+                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image5.jpg'></div>
+                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image6.jpg'></div>
+                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image7.jpg'></div>
+            </div>
+        </div>
+        <?php endif; ?>
     </section>
     <div class='footer'></div>
-
-
 </body>
 </html>
