@@ -19,38 +19,17 @@ require_once "handle_tumblr.php";
 <link rel="stylesheet" href="http://localhost/css/main.css" />
 <link rel="stylesheet" href="http://localhost/css/computer.css" />
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="http://localhost/css/superslides.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 <?php if (!isset($_GET['page'])): ?>
-    <script src="http://localhost/scripts/jquery.slides.min.js"></script>
+    <script src="http://localhost/scripts/jquery.easing.1.3.js"></script>
+    <script src="http://localhost/scripts/jquery.superslides.min.js" type="text/javascript" charset="utf-8"></script>
     <script>
-    $(function() {
-      $('#featured').slidesjs({
-        width: 4,
-        height: 3,
-        play: {
-          active: true,
-          effect: "fade",
-          interval: 3000,
-          auto: true,
-          swap: true,
-          pauseOnHover: false,
-          restartDelay: 2500
-        },
-        navigation: {
-          active: false
-        },
-        pagination: {
-          effect: "fade"
-        },
-        effect: {
-          fade: {
-            speed: 400
-          }
-      }
-      });
-    });
-    </script>
+        $('#slides').superslides({
+                                  animation: 'fade'
+                                });
+      </script>
 <?php endif; ?>
 
 
@@ -74,22 +53,60 @@ require_once "handle_tumblr.php";
 
         <div class="credit"> Designed by Binayak &amp; Bishakh</div>
     </aside>
-    <section class="container">
-        <!-- home page-->
-        <?php if(!isset($_GET['page'])):?>
-        <div class='slide-container'>
-            <div id="featured">
-                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image1.jpg'></div>
-                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image2.jpg'></div>
-                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image3.jpg'></div>
-                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image4.jpg'></div>
-                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image5.jpg'></div>
-                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image6.jpg'></div>
-                    <div><img width='100%' style='margin: 0 auto;' src='http://localhost/images/featured/Image7.jpg'></div>
-            </div>
-        </div>
-        <?php endif; ?>
-    </section>
+
+    <!-- Featured slides -->
+
+    <div id="slides">
+      <ul class="slides-container">
+        <li>
+          <img src="http://localhost/images/featured/Image1.jpg" alt="image1">
+          <div class="container">
+            Slide one
+          </div>
+        </li>
+        <li>
+          <img src="http://localhost/images/featured/Image2.jpg" alt="">
+          <div class="container">
+            Slide two
+          </div>
+        </li>
+        <li>
+          <img src="http://localhost/images/featured/Image3.jpg" alt="">
+          <div class="container">
+            Slide three
+          </div>
+        </li>
+        <li>
+          <img src="http://localhost/images/featured/Image4.jpg" alt="">
+          <div class="container">
+            Slide four
+          </div>
+        </li>
+        <li>
+          <img src="http://localhost/images/featured/Image5.jpg" alt="">
+          <div class="container">
+            Slide five
+          </div>
+        </li>
+        <li>
+          <img src="http://localhost/images/featured/Image6.jpg" alt="">
+          <div class="container">
+            Slide six
+          </div>
+        </li>
+        <li>
+          <img src="http://localhost/images/featured/Image7.jpg" alt="">
+          <div class="container">
+            Slide seven
+          </div>
+        </li>
+      </ul>
+      <nav class="slides-navigation">
+        <a href="#" class="next">}</a>
+        <a href="#" class="prev">{</a>
+      </nav>
+    </div>
+
     <div class='footer'></div>
 </body>
 </html>
