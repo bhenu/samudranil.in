@@ -11,14 +11,14 @@ require_once "handle_tumblr.php";
 <meta name='keywords' content='Samudranil Roy, Samudranil, Photography, Nature Photography, photos'>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <link rel="shortcut icon" href="images/favicon.ico" />
-<link rel="stylesheet" href="http://localhost/css/normalize.css" />
-<link rel="stylesheet" href="http://localhost/css/main.css" />
-<link rel="stylesheet" href="http://localhost/css/computer.css" />
+<link rel="stylesheet" href="http://samudranil-in.herokuapp.com/css/normalize.css" />
+<link rel="stylesheet" href="http://samudranil-in.herokuapp.com/css/main.css" />
+<link rel="stylesheet" href="http://samudranil-in.herokuapp.com/css/computer.css" />
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="jhttp://localhost/scripts/jquery.easing.1.3.js"></script>
-<script src="http://localhost/scripts/jquery.animate-enhanced.min.js"></script>
-<script src="http://localhost/scripts/jquery.superslides.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="jhttp://samudranil-in.herokuapp.com/scripts/jquery.easing.1.3.js"></script>
+<script src="http://samudranil-in.herokuapp.com/scripts/jquery.animate-enhanced.min.js"></script>
+<script src="http://samudranil-in.herokuapp.com/scripts/jquery.superslides.min.js" type="text/javascript" charset="utf-8"></script>
 <script>
     $(function() {
       $('#slides').superslides({
@@ -58,7 +58,7 @@ require_once "handle_tumblr.php";
   </div>
 
 <aside class='navbar'>
-    <div id="logo"><img src="http://localhost/images/logo_l.png" alt="logo"></div>
+    <div id="logo"><img src="http://samudranil-in.herokuapp.com/images/logo_l.png" alt="logo"></div>
     <div id="links">
         <ul>
             <li>portfolio</li>

@@ -52,7 +52,7 @@ aside {
     }
 
 body {
-    background: url('http://localhost/images/binding_dark.png');
+    background: url('http://samudranil-in.herokuapp.com/images/binding_dark.png');
     }
 
 #logo img {
@@ -80,7 +80,7 @@ body {
     }
 
 #cover {
-    background: url('http://localhost/images/binding_dark.png');
+    background: url('http://samudranil-in.herokuapp.com/images/binding_dark.png');
     }
 
 aside .credit {
