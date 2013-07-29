@@ -13,6 +13,7 @@ require_once "handle_tumblr.php";
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" href="http://localhost/css/normalize.css" />
 <link rel="stylesheet" href="http://localhost/css/main.css" />
+<link rel="stylesheet" href="http://localhost/css/computer.css" />
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="jhttp://localhost/scripts/jquery.easing.1.3.js"></script>
@@ -21,8 +22,7 @@ require_once "handle_tumblr.php";
 <script>
     $(function() {
       $('#slides').superslides({
-        hashchange: true,
-        play: 2000
+        hashchange: true
       });
 
       $('#slides').on('mouseenter', function() {
@@ -56,5 +56,19 @@ require_once "handle_tumblr.php";
       <a href="#" class="prev">Previous</a>
     </nav>
   </div>
+
+<aside class='navbar'>
+    <div id="logo"><img src="http://localhost/images/logo_l.png" alt="logo"></div>
+    <div id="links">
+        <ul>
+            <li>portfolio</li>
+            <li>blog</li>
+            <li>about</li>
+            <li>contacts</li>
+        </ul>
+    </div>
+
+    <div class="credit"> Designed by Binayak &amp; Bishakh</div>
+</aside>
 </body>
 </html>
