@@ -22,7 +22,8 @@ require_once "handle_tumblr.php";
 <script>
     $(function() {
       $('#slides').superslides({
-        hashchange: true
+        hashchange: true,
+        play: 2000
       });
 
       $('#slides').on('mouseenter', function() {
@@ -43,9 +44,9 @@ require_once "handle_tumblr.php";
         ##
         ## retreive the featured images from picasa
         ##
-        $photos = array_slice($Picasa->getAlbumPhotos('5632182463740846529', '1024', '1', '7'), 2);
+        $photos = array_slice($Picasa->getAlbumPhotos('5632182463740846529', '1600', '1', '7'), 2);
         foreach ($photos as $entry) {
-            echo "<img width=\"1024\" height=\"768\" alt=\"featured image\" src=\"" .
+            echo "<img width=\"1600\" height=\"1200\" alt=\"featured image\" src=\"" .
             $entry['url'] . "\"/>";
             }
         ?>
