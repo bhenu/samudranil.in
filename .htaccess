@@ -9,7 +9,7 @@ ErrorDocument 404 /404.php
 # ----------------------------------------------------------------------
 
 # Force IE to render pages in the highest available mode in the various
-# cases when it may not: http://hsivonen.iki.fi/doctype/ie-mode.pdf.
+# cases when it may not: https://hsivonen.iki.fi/doctype/ie-mode.pdf.
 # Use, if installed, Google Chrome Frame.
 
 <IfModule mod_headers.c>
@@ -44,7 +44,7 @@ RewriteEngine on
 
 #RewriteCond %{HTTPS} !=on
 #RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
-#RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+#RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 #-----------------------------------------------------------------------
 # URL mapping rules

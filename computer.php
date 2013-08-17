@@ -15,8 +15,8 @@ require_once "handle_tumblr.php";
 <link rel="stylesheet" href="https://samudranil-in.herokuapp.com/css/main.css"  type="text/css"/>
 <link rel="stylesheet" href="https://samudranil-in.herokuapp.com/css/computer.css"  type="text/css"/>
 <link rel="stylesheet" href="https://samudranil-in.herokuapp.com/css/jquery.mCustomScrollbar.css" type="text/css" />
-<link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
-<link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 <script src="https://samudranil-in.herokuapp.com/scripts/jquery.easing.1.3.js"></script>
 <script src="https://samudranil-in.herokuapp.com/scripts/jquery.animate-enhanced.min.js"></script>

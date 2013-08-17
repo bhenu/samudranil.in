@@ -3,7 +3,7 @@ class Tumblr{
     private $userid = "samudranilroy.tumblr.com";
     private $apikey = "upraHHL2RL1JwKyg9LXX1TGyeJ8d0wZcFOus3xBf7x47pX1xyw";
     public function getPosts($offset, $maxresults){
-        $feedURL = "http://api.tumblr.com/v2/blog/"
+        $feedURL = "https://api.tumblr.com/v2/blog/"
                     .$this->userid
                     ."/posts/text?api_key="
                     .$this->apikey
@@ -45,7 +45,7 @@ class Tumblr{
 
     //get single post
     public function getSinglePost($postid){
-        $feedURL = "http://api.tumblr.com/v2/blog/"
+        $feedURL = "https://api.tumblr.com/v2/blog/"
             .$this->userid
             ."/posts/text?api_key="
             .$this->apikey
