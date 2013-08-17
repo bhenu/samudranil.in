@@ -135,7 +135,7 @@ section.container {
     max-width: 640px;
 }
 
-@media all and (min-width: 1930px){
+@media all and (min-width: 1600px){
     .post, .post-gist {
         font-size: 1.3em;
         max-width: 1000px;
