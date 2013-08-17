@@ -124,14 +124,54 @@ section.container {
     left: 20%;
     }
 
-.post {
+.post, .post-gist {
     color: #D6D6D6;
     font-family: Roboto Condensed;
-    font-size: 1.2em;
+    font-size: 1em;
     line-height: 1.5;
     text-align: left;
-    width: 600px;
+    width: 80%;
     margin: 0 auto;
+    max-width: 640px;
+}
+
+h2, a h2 {
+    color: #D6D6D6;
+    font-size: 2em;
+    margin-left: -10px;
+    text-shadow: 0 2px 5px #000000;
+    display: block;
+}
+
+.date {
+    font-size: 0.9em;
+    font-style: italic;
+    line-height: 1;
+}
+
+.post img {
+    width: 100%;
+    }
+
+.post-gist img {
+    width: auto;
+    float: left;
+    margin-top: 7px;
+    margin-right: 10px;
+    }
+
+.post-gist .date {
+    float: right;
+    font-size: 0.9em;
+    font-style: italic;
+    margin-right: 20px;
+    margin-top: -45px;
+}
+
+.more {
+    color: #C6C6C6;
+    font-size: 1.2em;
+    text-align: right;
 }
 
 /* Ajax element stylings--------------------------------------------- */

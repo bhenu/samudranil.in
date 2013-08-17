@@ -17,8 +17,12 @@ elseif($_GET['type'] == 'albumPhotos'){
         $response = $Picasa->getAlbumPhotos($_GET['albumid'], $_GET['thumbsize'], $_GET['offset'], $_GET['maxresult']);
         $json = json_encode($response);
     }
-elseif($_GET['type'] == 'post'){
+elseif($_GET['type'] == 'blog'){
         $response = $Tumblr->getPostsShort('0', '10');
+        $json = json_encode($response);
+        }
+elseif($_GET['type'] == 'post'){
+        $response = $Tumblr->getSinglePost($_GET['id']);
         $json = json_encode($response);
         }
 header('Content-type: application/json');

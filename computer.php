@@ -29,9 +29,10 @@ require_once "handle_tumblr.php";
     $(function() {
         $("#content-area").mCustomScrollbar({
                                             mouseWheel: true,
-                                            mouseWheelPixels: 'auto',
+                                            mouseWheelPixels: 500,
                                             autoHideScrollbar:true,
-                                            advanced:{updateOnContentResize: true}
+                                            advanced:{updateOnContentResize: true,
+                                                      normalizeMouseWheelDelta: true}
                                             });
 
         $('#slides').superslides({
@@ -47,68 +48,110 @@ require_once "handle_tumblr.php";
             });
         });
 
-        $("#logo").click(function(){
-            $("#content-area").fadeOut('200', function(){
-                $("#slides").fadeIn();
-            })
-        })
-
         // history handling --------------------------------------------
         History.Adapter.bind(window,'statechange',function(){
             var State = History.getState();
             ajax_load(State.url);
-            console.log("stateChanged!" + State.url);
         });
 
         // ajax prevent links from opening -----------------------------
-        $('a').click(function (e) {
+        $(document).on('click', 'a', function (e) {
             e.preventDefault();
             var url = $(this).attr('href');
             History.pushState(null, null, url);
-            console.log("link clicked" + url);
         });
+
+        // create scroll bar -------------------------------------------
+        var generate_sBar = function(){
+            $("#content-area").mCustomScrollbar({
+                                                mouseWheel: true,
+                                                mouseWheelPixels: 500,
+                                                autoHideScrollbar:true,
+                                                advanced:{updateOnContentResize: true,
+                                                          normalizeMouseWheelDelta: false
+                                                          },
+                                                scrollButtons:{enable: true}
+                                                });
+            };
+
 
         // ajax loading function ---------------------------------------
         var ajax_load = function(url){
-            console.log(url + url.search('blog'));
-            if(url.search('blog/([0-9]+)?$') != -1){
-                $('#content-area').html("blog + id!");
-            }
-            else if (url.search('blog?$')){
+
+            // blog: single post ---------------------------------------
+            if(url.search('blog/([0-9]+)/?$') != -1){
                 $("#content-area").html("<div class='loading'>loading..</div>");
-                $.getJSON("http://localhost/ajax.php?type=post",
+
+                var found = url.match('blog/([0-9]+)/?$');
+                $.getJSON("http://localhost/ajax.php?type=post&id='"+found[1]+"'",
                         function(data){
-                            console.dir(data);
+                            var time = new Date(parseInt(data.time)*1000);
+                            var blog_post = "<h2>" + data.title + "</h2>"
+                                            + "<p class='date'>"
+                                            + time.toDateString()
+                                            + "</p>"
+                                            + "<p class='body'>"+data.body+"</p>";
                             $("#content-area").empty();
-                            $.each(data, function(index, post){
-                                var container = $("<div class='post'></div>").hide();
-                                $("<h2>" + post.title + "</h2>").appendTo(container);
-                                var time = new Date(parseInt(post.time, 10) * 1000);
-                                $("<p class='date'>"+ time.toDateString+"</p>").appendTo(container);
-                                $("<p class='body'>"+ post.body+"</p>").appendTo(container);
-                                container.appendTo("#content-area").show();
-                            });
-                            $("#content-area").mCustomScrollbar({
-                                                                    mouseWheel: true,
-                                                                    mouseWheelPixels: 'auto',
-                                                                    autoHideScrollbar:true,
-                                                                    advanced:{updateOnContentResize: true},
-                                                                    scrollButtons:{enable: true}
-                                                                    });
-                            console.log("update scroll bar");
+                            $("<div class='post'></div>").appendTo("#content-area")
+                                              .hide()
+                                              .html(blog_post)
+                                              .fadeIn();
+                            generate_sBar();
                         });
             }
-            else if(url.search('about?$') != -1){
+
+            //blog: all posts ------------------------------------------
+            else if (url.search('blog/?$') != -1){
+                $("#content-area").html("<div class='loading'>loading..</div>");
+                $.getJSON("http://localhost/ajax.php?type=blog",
+                        function(data){
+                            var blog_posts = [];
+                            var i = 0;
+                            $("#content-area").empty();
+                            $.each(data, function(index, post){
+                                var time = new Date(parseInt(post.time)*1000);
+                                blog_posts[i++] = "<div class='post-gist'>";
+                                blog_posts[i++] = "<a href='http://localhost/blog/"
+                                                    + post.id +
+                                                    "/'><h2>" + post.title + "</h2></a>";
+                                blog_posts[i++] = "<p class='date'>"
+                                                    + time.toDateString()
+                                                    + "</p>";
+                                blog_posts[i++] = "<p class='body'>"+post.body+"</p>";
+                                blog_posts[i++] = "<a href='http://localhost/blog/"
+                                                    + post.id +
+                                                    "/'><p class='more'>read on...</p></a>";
+                                blog_posts[i++] = "</div>";
+                            });
+                            $("<div class='blog_container'></div>").appendTo("#content-area")
+                                              .hide()
+                                              .html(blog_posts.join(''))
+                                              .fadeIn();
+                            generate_sBar();
+                        });
+            }
+
+            // about page ----------------------------------------------
+            else if(url.search('about/?$') != -1){
                 $('#content-area').html("about");
             }
-            else if(url.search('contacts?$') != -1){
+
+            // contacts page -------------------------------------------
+            else if(url.search('contacts/?$') != -1){
                 $('#content-area').html("contacts");
             }
-            else if(url.search('portfolio?$') != -1){
+
+            // portfolio page ------------------------------------------
+            else if(url.search('portfolio/?$') != -1){
                 $('#content-area').html("portfolio");
             }
+
+            // home page -----------------------------------------------
             else{
-                $('#content-area').html("default");
+                $("#content-area").fadeOut('200', function(){
+                    $("#slides").fadeIn();
+                    $('#slides').superslides('start');
+                }).empty();
             }
         }
     });

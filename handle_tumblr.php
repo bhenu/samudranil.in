@@ -37,8 +37,8 @@ class Tumblr{
     public function getPostsShort($offset, $maxresult){
         $response = array_slice($this->getPosts($offset, $maxresult), 2);
         foreach($response as &$entry){
-            $shortpost = preg_split("|<!--\smore\s-->|", $entry['body'], 2);
-            $entry['body'] = $shortpost['0'];
+            $shortpost = preg_split("|<!--more-->|", $entry['body'], 2);
+            $entry['body'] = str_replace('_z.jpg', '_m.jpg', $shortpost['0']);
         }
         return $response;
     }
