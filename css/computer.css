@@ -1,5 +1,5 @@
 aside {
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 20%;
     height: 100%;
@@ -8,6 +8,21 @@ aside {
     background: rgba(196, 196, 196, 0.2);
     box-shadow: 0 0 2px #fff;
     }
+
+section {
+    position: absolute;
+    top: 0;
+    width: 70%;
+    height: 100% ;
+    text-align: center;
+    z-index: 100;
+    background: rgba(196, 196, 196, 0.2);
+    box-shadow: 0 0 2px #fff;
+    left: 25%;
+    display: none;
+    overflow: auto;
+    }
+
 
 #links ul {
     margin: 0;
@@ -60,6 +75,7 @@ body {
 
 #logo img {
     width: 60%;
+    cursor: pointer;
     }
 
 #logo {
@@ -108,11 +124,31 @@ section.container {
     left: 20%;
     }
 
-// Slide Style ------------------------------------------------
- /* Prevent the slideshow from flashing on load */
-#slides {
-    display: none
+.post {
+    color: #D6D6D6;
+    font-family: Roboto Condensed;
+    font-size: 1.2em;
+    line-height: 1.5;
+    text-align: left;
+    width: 600px;
+    margin: 0 auto;
 }
+
+/* Ajax element stylings--------------------------------------------- */
+.loading {
+    background: none repeat scroll 0 0 #FFD66A;
+    border: 2px solid #FFD659;
+    border-radius: 10px 10px 10px 10px;
+    font-size: 1.2em;
+    margin: 10px auto 0;
+    padding: 3px;
+    width: 100px;
+    opacity: 0.5;
+}
+/* ------------------------------------------------------------------ */
+
+
+/* Slide Style ------------------------------------------------------ */
 
 /* Center the slideshow */
 #slides {
@@ -171,5 +207,4 @@ section.container {
 .slides-pagination a.current {
   background: rgba(255, 255, 255, 0.7);
 }
-//-------------------------------------------------------------
-
+/*----------------------------------------------------------------------

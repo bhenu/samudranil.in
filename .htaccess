@@ -1,12 +1,12 @@
 ErrorDocument 404 /404.php
 
-# ##############################################################################
+# ######################################################################
 # # INTERNET EXPLORER #
-# ##############################################################################
+# ######################################################################
 
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------
 # | Better website experience |
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
 # Force IE to render pages in the highest available mode in the various
 # cases when it may not: http://hsivonen.iki.fi/doctype/ie-mode.pdf.
@@ -22,9 +22,9 @@ ErrorDocument 404 /404.php
 </IfModule>
 
 
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------
 # | UTF-8 encoding |
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
 # Use UTF-8 encoding for anything served as `text/html` or `text/plain`.
 AddDefaultCharset utf-8
@@ -37,32 +37,35 @@ AddDefaultCharset utf-8
 
 RewriteEngine on
 
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------
 # Forcing the "www." at the beginning of URLs |
-# ------------------------------------------------------------------------------
+# ----------------------------------------------------------------------
 
 
 #RewriteCond %{HTTPS} !=on
 #RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
 #RewriteRule ^ http://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
-#--------------------------------------------------------------------------------
+#-----------------------------------------------------------------------
 # URL mapping rules
-#--------------------------------------------------------------------------------
+#-----------------------------------------------------------------------
 
-RewriteCond %{REQUEST_URI} albums/([0-9]+)
+RewriteCond %{REQUEST_URI} portfolio/?$
+RewriteRule portfolio /?page=portfolio [PT]
+
+RewriteCond %{REQUEST_URI} albums/([0-9]+)?$
 RewriteRule albums/([0-9]+) /?page=albums&id=$1 [PT]
 
 RewriteCond %{REQUEST_URI} albums/?$
 RewriteRule albums /?page=albums [PT]
 
-RewriteCond %{REQUEST_URI} photo/([0-9]+)
+RewriteCond %{REQUEST_URI} photo/([0-9]+)?$
 RewriteRule photo/([0-9]+) /?page=photo&id=$1 [PT]
 
-RewriteCond %{REQUEST_URI} blog/([0-9]+)
+RewriteCond %{REQUEST_URI} blog/([0-9]+)?$
 RewriteRule blog/([0-9]+) /?page=blog&id=$1 [PT]
 
-RewriteCond %{REQUEST_URI} blog/page/([0-9]+)
+RewriteCond %{REQUEST_URI} blog/page/([0-9]+)?$
 RewriteRule blog/page/([0-9]+) /?page=blog&offset=$1 [PT]
 
 RewriteCond %{REQUEST_URI} blog/?$

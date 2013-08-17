@@ -1,6 +1,6 @@
 <?php
 class Tumblr{
-    private $userid = "ghoshbinayak.tumblr.com";
+    private $userid = "samudranilroy.tumblr.com";
     private $apikey = "upraHHL2RL1JwKyg9LXX1TGyeJ8d0wZcFOus3xBf7x47pX1xyw";
     public function getPosts($offset, $maxresults){
         $feedURL = "http://api.tumblr.com/v2/blog/"

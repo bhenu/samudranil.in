@@ -84,7 +84,7 @@ require_once "handle_tumblr.php";
   </div>
   <div class="content-area">
     <!-- home page-->
-    <?php if(!isset($_GET['page'])):?>
+    <?php if(!isset($_GET['page']) || $_GET['page'] == 'portfolio'):?>
     <div class="photo-slider">
      <div id='slider' class='swipe' style='visibility: visible'>
       <div class='swipe-wrap'>
