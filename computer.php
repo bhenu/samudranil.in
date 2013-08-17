@@ -11,19 +11,19 @@ require_once "handle_tumblr.php";
 <meta name='keywords' content='Samudranil Roy, Samudranil, Photography, Nature Photography, photos'>
 <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <link rel="shortcut icon" href="images/favicon.ico" />
-<link rel="stylesheet" href="http://localhost/css/normalize.css"  type="text/css"/>
-<link rel="stylesheet" href="http://localhost/css/main.css"  type="text/css"/>
-<link rel="stylesheet" href="http://localhost/css/computer.css"  type="text/css"/>
-<link rel="stylesheet" href="http://localhost/css/jquery.mCustomScrollbar.css" type="text/css" />
+<link rel="stylesheet" href="https://samudranil-in.herokuapp.com/css/normalize.css"  type="text/css"/>
+<link rel="stylesheet" href="https://samudranil-in.herokuapp.com/css/main.css"  type="text/css"/>
+<link rel="stylesheet" href="https://samudranil-in.herokuapp.com/css/computer.css"  type="text/css"/>
+<link rel="stylesheet" href="https://samudranil-in.herokuapp.com/css/jquery.mCustomScrollbar.css" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:300' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
-<script src="http://localhost/scripts/jquery.easing.1.3.js"></script>
-<script src="http://localhost/scripts/jquery.animate-enhanced.min.js"></script>
-<script src="http://localhost/scripts/jquery.superslides.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="http://localhost/scripts/jquery.mCustomScrollbar.min.js" type="text/javascript" charset="utf-8"></script>
-<script src="http://localhost/scripts/history.adapter.jquery.js" type="text/javascript" charset="utf-8"></script>
-<script src="http://localhost/scripts/history.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://samudranil-in.herokuapp.com/scripts/jquery.easing.1.3.js"></script>
+<script src="https://samudranil-in.herokuapp.com/scripts/jquery.animate-enhanced.min.js"></script>
+<script src="https://samudranil-in.herokuapp.com/scripts/jquery.superslides.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://samudranil-in.herokuapp.com/scripts/jquery.mCustomScrollbar.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://samudranil-in.herokuapp.com/scripts/history.adapter.jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://samudranil-in.herokuapp.com/scripts/history.js" type="text/javascript" charset="utf-8"></script>
 
 <script>
     $(function() {
@@ -83,7 +83,7 @@ require_once "handle_tumblr.php";
                 $("#content-area").html("<div class='loading'>loading..</div>");
 
                 var found = url.match('blog/([0-9]+)/?$');
-                $.getJSON("http://localhost/ajax.php?type=post&id='"+found[1]+"'",
+                $.getJSON("https://samudranil-in.herokuapp.com/ajax.php?type=post&id='"+found[1]+"'",
                         function(data){
                             var time = new Date(parseInt(data.time)*1000);
                             var blog_post = "<h2>" + data.title + "</h2>"
@@ -103,7 +103,7 @@ require_once "handle_tumblr.php";
             //blog: all posts ------------------------------------------
             else if (url.search('blog/?$') != -1){
                 $("#content-area").html("<div class='loading'>loading..</div>");
-                $.getJSON("http://localhost/ajax.php?type=blog",
+                $.getJSON("https://samudranil-in.herokuapp.com/ajax.php?type=blog",
                         function(data){
                             var blog_posts = [];
                             var i = 0;
@@ -111,14 +111,14 @@ require_once "handle_tumblr.php";
                             $.each(data, function(index, post){
                                 var time = new Date(parseInt(post.time)*1000);
                                 blog_posts[i++] = "<div class='post-gist'>";
-                                blog_posts[i++] = "<a href='http://localhost/blog/"
+                                blog_posts[i++] = "<a href='https://samudranil-in.herokuapp.com/blog/"
                                                     + post.id +
                                                     "/'><h2>" + post.title + "</h2></a>";
                                 blog_posts[i++] = "<p class='date'>"
                                                     + time.toDateString()
                                                     + "</p>";
                                 blog_posts[i++] = "<p class='body'>"+post.body+"</p>";
-                                blog_posts[i++] = "<a href='http://localhost/blog/"
+                                blog_posts[i++] = "<a href='https://samudranil-in.herokuapp.com/blog/"
                                                     + post.id +
                                                     "/'><p class='more'>read on...</p></a>";
                                 blog_posts[i++] = "</div>";
@@ -182,13 +182,13 @@ require_once "handle_tumblr.php";
 
 <!-- sidebar ---------------------------------------------------------->
 <aside class='navbar'>
-    <div id="logo"><a href="../"><img src="http://localhost/images/logo_l.png" alt="logo"></a></div>
+    <div id="logo"><a href="../"><img src="https://samudranil-in.herokuapp.com/images/logo_l.png" alt="logo"></a></div>
     <div id="links">
         <ul>
-            <a href="http://localhost/portfolio"><li>portfolio</li></a>
-            <a href="http://localhost/blog"><li>blog</li></a>
-            <a href="http://localhost/about"><li>about</li></a>
-            <a href="http://localhost/contacts"><li>contacts</li></a>
+            <a href="https://samudranil-in.herokuapp.com/portfolio"><li>portfolio</li></a>
+            <a href="https://samudranil-in.herokuapp.com/blog"><li>blog</li></a>
+            <a href="https://samudranil-in.herokuapp.com/about"><li>about</li></a>
+            <a href="https://samudranil-in.herokuapp.com/contacts"><li>contacts</li></a>
         </ul>
     </div>
 
