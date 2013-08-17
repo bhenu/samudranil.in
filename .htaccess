@@ -38,15 +38,20 @@ AddDefaultCharset utf-8
 RewriteEngine on
 
 # ----------------------------------------------------------------------
-# Forcing the "www." at the beginning of URLs |
+# Forcing the "https" |
 # ----------------------------------------------------------------------
-
 
 RewriteCond %{HTTPS} !=on
 RewriteRule ^.*$ https://%{SERVER_NAME}%{REQUEST_URI} [R,L]
 
-RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
-RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+
+# ----------------------------------------------------------------------
+# Forcing the "www." at the beginning of URLs |
+# ----------------------------------------------------------------------
+
+#RewriteCond %{HTTPS} !=on
+#RewriteCond %{HTTP_HOST} !^www\..+$ [NC]
+#RewriteRule ^ https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
 
 #-----------------------------------------------------------------------
 # URL mapping rules
