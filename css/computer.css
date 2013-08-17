@@ -140,6 +140,12 @@ section.container {
         font-size: 1.3em;
         max-width: 1000px;
         }
+
+    .post-gist .date {
+        float: none;
+        margin-top: -30px;
+        text-align: right;
+    }
 }
 
 h2, a h2 {
