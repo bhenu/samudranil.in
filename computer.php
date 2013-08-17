@@ -50,6 +50,7 @@ require_once "handle_tumblr.php";
 
         // history handling --------------------------------------------
         History.Adapter.bind(window,'statechange',function(){
+            console.log
             var State = History.getState();
             ajax_load(State.url);
         });
@@ -58,7 +59,9 @@ require_once "handle_tumblr.php";
         $(document).on('click', 'a', function (e) {
             e.preventDefault();
             var url = $(this).attr('href');
-            History.pushState(null, null, url);
+            console.log('called url: ' +url);
+            History.pushState({}, "", url);
+            console.log("history.push");
         });
 
         // create scroll bar -------------------------------------------
