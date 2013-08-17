@@ -132,15 +132,8 @@ section.container {
     text-align: left;
     width: 80%;
     margin: 0 auto;
-    max-width: 640px;
+    max-width: 800px;
 }
-
-@media all and (max-width: 1400px) and (min-width: 1000px){
-    .post {
-        font-size: 1.5em;
-        max-width: 800px;
-        }
-    }
 
 h2, a h2 {
     color: #D6D6D6;
