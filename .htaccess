@@ -41,7 +41,7 @@ RewriteEngine on
 # Forcing the "https" |
 # ----------------------------------------------------------------------
 
-RewriteCond %{HTTP:X-Forwarded-Proto} https
+RewriteCond %{HTTP:X-Forwarded-Proto} !https
 RewriteRule ^(.*)$ https://%{SERVER_NAME}%{REQUEST_URI}%{HTTP:X-Forwarded-Proto} [R=301,L]
 
 
