@@ -132,7 +132,14 @@ section.container {
     text-align: left;
     width: 80%;
     margin: 0 auto;
-    max-width: 800px;
+    max-width: 640px;
+}
+
+@media all and (min-width: 1930px){
+    .post, .post-gist {
+        font-size: 1.3em;
+        max-width: 1000px;
+        }
 }
 
 h2, a h2 {
