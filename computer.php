@@ -82,7 +82,7 @@ require_once "handle_tumblr.php";
                     if($(this).data("keyboard-input")==="enabled"){
                         var activeElem=$(".keyboard-input"),
                             activeElemPos=Math.abs($(".keyboard-input .mCSB_container").position().top),
-                            pixelsToScroll=1000;
+                            pixelsToScroll=60;
                         if(e.which===38){ //scroll up
                             e.preventDefault();
                             if(pixelsToScroll>activeElemPos){
