@@ -68,7 +68,7 @@ require_once "handle_tumblr.php";
         var generate_sBar = function(){
             $("#content-area").mCustomScrollbar({
                                                 mouseWheel: true,
-                                                mouseWheelPixels: 500,
+                                                mouseWheelPixels: 100,
                                                 autoHideScrollbar:true,
                                                 advanced:{updateOnContentResize: true,
                                                           normalizeMouseWheelDelta: false
