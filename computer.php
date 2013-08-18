@@ -78,6 +78,16 @@ require_once "handle_tumblr.php";
             };
 
         // keyboard handling for scroll bar ----------------------------
+        $("#content-area").hover(function(){
+                                    $(document).data({"keyboard-input":"enabled"});
+                                    $(this).addClass("keyboard-input");
+                                    }
+                                ,function(){
+                                    $(document).data({"keyboard-input":"disabled"});
+                                    $(this).removeClass("keyboard-input");
+                                    });
+
+
         $(document).keydown(function(e){
                     if($(this).data("keyboard-input")==="enabled"){
                         var activeElem=$(".keyboard-input"),
