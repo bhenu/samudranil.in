@@ -14,7 +14,6 @@ class Picasa{
                 $title = (string)$entry->title;
                 $media = $entry->children('media', TRUE);
                 $content = $media->group->content;
-                var_dump($content);
                 $imgurl = (string)$content->attributes()->{'url'};
                 $Albums[] = array(
                                   'albumid' => $albumid,
