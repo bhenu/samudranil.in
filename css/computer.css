@@ -133,7 +133,7 @@ section.container {
     text-align: left;
     width: 80%;
     margin: 0 auto;
-    max-width: 640px;
+    max-width: 640640px;
 }
 
 @media all and (min-width: 1600px){
@@ -159,8 +159,11 @@ h2, a h2 {
 }
 
 .post img {
-    width: 100%;
-    }
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    width: auto;
+}
 
 .post-gist img {
     width: auto;

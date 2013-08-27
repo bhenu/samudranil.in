@@ -161,11 +161,10 @@ require_once "handle_tumblr.php";
                             $("<div class='blog_container'></div>").appendTo("#content-area")
                                               .hide()
                                               .html(blog_posts.join(''))
-                                              .fadeIn();
+                                              .fadeIn('200', function(){
+                                                  $(".post img").parent("p").css({"text-align":"center"});
+                                                  });
                             generate_sBar();
-
-                            // align the image captions
-                            $(".post img").parent("p").css({"text-align":"center"});
                         });
             }
 
