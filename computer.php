@@ -183,7 +183,7 @@ require_once "handle_tumblr.php";
                     function (data){
                          $("<div class='blog_container'></div>").appendTo("#content-area")
                                               .hide()
-                                              .html(data)
+                                              .html("<pre>".data."</pre>")
                                               .fadeIn();
                     }
                 )
