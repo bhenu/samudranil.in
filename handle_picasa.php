@@ -10,10 +10,11 @@ class Picasa{
                         .$thumbsize;
             $sxml = simplexml_load_file($feedURL);
             foreach ($sxml->entry as $entry) {
-                $albumid = (string)$entry->children('https://schemas.google.com/photos/2007')->id;
+                $albumid = (string)$entry->children('gphoto', TRUE)->id;
                 $title = (string)$entry->title;
-                $media = $entry->children('https://search.yahoo.com/mrss/');
+                $media = $entry->children('media', TRUE);
                 $content = $media->group->content;
+                var_dump($content);
                 $imgurl = (string)$content->attributes()->{'url'};
                 $Albums[] = array(
                                   'albumid' => $albumid,
@@ -41,12 +42,12 @@ class Picasa{
                             .$maxresult;
                 $sxml = simplexml_load_file($feedURL);
                 $albumtitle = (string)$sxml->title;
-                $numphotos = (string)$sxml->children('https://schemas.google.com/photos/2007')->numphotos;
+                $numphotos = (string)$sxml->children('gphoto', TRUE)->numphotos;
                 $Photos = array('albumtitle' => $albumtitle,
                                 'numphotos' => $numphotos,
                                 );
                 foreach($sxml->entry as $entry){
-                    $photoid = (string)$entry->children('https://schemas.google.com/photos/2007')->id;
+                    $photoid = (string)$entry->children('gphoto', TRUE)->id;
                     $title = (string)$entry->summary;
                     $url = (string)$entry->content->attributes()->{'src'};
                     $exiftag = $entry->children('https://schemas.google.com/photos/exif/2007');
@@ -80,7 +81,7 @@ class Picasa{
                 $sxml = simplexml_load_file($feedURL);
                 $Photos = array();
                 foreach($sxml->entry as $entry){
-                    $photoid = (string)$entry->children('https://schemas.google.com/photos/2007')->id;
+                    $photoid = (string)$entry->children('gphoto', TRUE)->id;
                     $title = (string)$entry->summary;
                     $url = (string)$entry->content->attributes()->{'src'};
                     $Photos[] = array(
@@ -102,9 +103,9 @@ class Picasa{
                 $sxml = simplexml_load_file($feedURL);
                 $title = (string)$sxml->subtitle;
                 $filename = (string)$sxml->title;
-                $url = (string)$sxml->children('https://search.yahoo.com/mrss/')
+                $url = (string)$sxml->children('media', TRUE)
                             ->group->content->attributes()->{'url'};
-                $albumid = (string)$sxml->children('https://schemas.google.com/photos/2007')
+                $albumid = (string)$sxml->children('gphoto', TRUE)
                                 ->albumid;
                 $exiftag = $sxml->children('https://schemas.google.com/photos/exif/2007')->tags;
                 $exif = array(
@@ -124,7 +125,7 @@ class Picasa{
                 $sxml = simplexml_load_file($feedURL);
                 $albumtitle = (string)$sxml->title;
                 foreach($sxml->entry as $entry){
-                    if($entry->children('https://schemas.google.com/photos/2007')->id == $photoid){
+                    if($entry->children('gphoto', TRUE)->id == $photoid){
                         $prev = array(
                                     'id' => (string)$temp_id,
                                     'title' => (string)$temp_title,
@@ -132,7 +133,7 @@ class Picasa{
                                     );
                     }
                     if($temp_id == $photoid){
-                        $temp_id = $entry->children('https://schemas.google.com/photos/2007')
+                        $temp_id = $entry->children('gphoto', TRUE)
                                 ->id;
                         $temp_title = $entry->summary;
                         $temp_url = $entry->content->attributes()->{'src'};
@@ -143,7 +144,7 @@ class Picasa{
                                     );
                         continue;
                     }
-                    $temp_id = $entry->children('https://schemas.google.com/photos/2007')
+                    $temp_id = $entry->children('gphoto', TRUE)
                                 ->id;
                     $temp_title = $entry->summary;
                     $temp_url = $entry->content->attributes()->{'src'};
