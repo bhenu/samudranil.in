@@ -107,6 +107,9 @@ require_once "handle_tumblr.php";
                     }
                 });
 
+        // css to align the caption ------------------------------------
+        $(".post img").parent("p").css({"text-align":"center"});
+
         // ajax loading function ---------------------------------------
         var ajax_load = function(url){
 
