@@ -178,7 +178,15 @@ require_once "handle_tumblr.php";
 
             // portfolio page ------------------------------------------
             else if(url.search('portfolio/?$') != -1){
-                $('#content-area').html("portfolio");
+                $("#content-area").html("<div class='loading'>loading..</div>");
+                $.getJSON("https://samudranil-in.herokuapp.com/ajax.php?type=albums&thumbsize=400c",
+                    function (data){
+                         $("<div class='blog_container'></div>").appendTo("#content-area")
+                                              .hide()
+                                              .html(data)
+                                              .fadeIn();
+                    }
+                )
             }
 
             // home page -----------------------------------------------
